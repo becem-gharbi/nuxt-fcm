@@ -1,8 +1,8 @@
 {
-  "name": "my-module",
-  "version": "1.0.0",
-  "description": "My new Nuxt module",
-  "repository": "your-org/my-module",
+  "name": "@bg-dev/nuxt-fcm",
+  "version": "0.0.1",
+  "description": "A nuxt module to exchange messages via Firebase Cloud Messaging",
+  "repository": "https://github.com/becem-gharbi/nuxt-fcm.git",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -28,7 +28,8 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.3.2"
+    "@nuxt/kit": "^3.3.2",
+    "firebase": "^9.19.1"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
