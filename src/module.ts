@@ -8,6 +8,7 @@ import {
 } from "@nuxt/kit";
 import { name, version } from "../package.json";
 import { defu } from "defu";
+
 import type { PublicConfig, PrivateConfig } from "./runtime/types";
 
 export interface ModuleOptions extends PrivateConfig, PublicConfig {}
@@ -83,6 +84,10 @@ export default defineNuxtModule<ModuleOptions>({
           vapidKey: options.vapidKey,
         },
       },
+    });
+
+    nuxt.hook("prepare:types", (ctx) => {
+      ctx.references.push;
     });
   },
 });
