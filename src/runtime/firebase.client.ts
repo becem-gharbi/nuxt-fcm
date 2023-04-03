@@ -1,6 +1,11 @@
 import { defineNuxtPlugin, useRuntimeConfig } from "#app";
 import { initializeApp } from "firebase/app";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import {
+  getMessaging,
+  getToken,
+  onMessage,
+  MessagePayload,
+} from "firebase/messaging";
 
 export default defineNuxtPlugin(async () => {
   const publicConfig = useRuntimeConfig().public.fcm;
@@ -12,9 +17,14 @@ export default defineNuxtPlugin(async () => {
     vapidKey: publicConfig.vapidKey,
   });
 
-  console.log({ registrationToken });
-
-  onMessage(messaging, (payload) => {
-    console.log("Message received. ", payload);
-  });
+  return {
+    provide: {
+      fcm: {
+        registrationToken,
+        onMessage: (cb: (payload: MessagePayload) => void) => {
+          onMessage(messaging, cb);
+        },
+      },
+    },
+  };
 });
