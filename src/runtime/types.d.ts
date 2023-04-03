@@ -1,7 +1,5 @@
-import type { FirebaseOptions } from "firebase/app";
-
 export type PublicConfig = {
-  firebaseOptions: FirebaseOptions;
+  firebaseConfig: Record<string, string>;
   vapidKey: string;
 };
 

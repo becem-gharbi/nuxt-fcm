@@ -20,7 +20,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   // Default configuration options of the Nuxt module
   defaults: {
-    firebaseOptions: {},
+    firebaseConfig: {},
     vapidKey: "",
     serviceAccount: {},
   },
@@ -79,7 +79,7 @@ export default defineNuxtModule<ModuleOptions>({
 
       public: {
         fcm: {
-          firebaseOptions: options.firebaseOptions,
+          firebaseConfig: options.firebaseConfig,
           vapidKey: options.vapidKey,
         },
       },

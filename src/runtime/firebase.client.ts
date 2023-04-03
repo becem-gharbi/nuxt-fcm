@@ -5,7 +5,7 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 export default defineNuxtPlugin(async () => {
   const publicConfig = useRuntimeConfig().public.fcm;
 
-  const app = initializeApp(publicConfig.firebaseOptions);
+  const app = initializeApp(publicConfig.firebaseConfig);
   const messaging = getMessaging(app);
 
   const registrationToken = await getToken(messaging, {
