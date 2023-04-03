@@ -1,11 +1,16 @@
-import { defineNuxtModule, addPlugin, createResolver } from "@nuxt/kit";
+import { fileURLToPath } from "url";
+import {
+  defineNuxtModule,
+  addPlugin,
+  createResolver,
+  addServerHandler,
+  addTemplate,
+} from "@nuxt/kit";
 import { name, version } from "../package.json";
-import type { FirebaseOptions } from "firebase/app";
-// Module options TypeScript interface definition
-export interface ModuleOptions {
-  firebaseOptions: FirebaseOptions;
-  vapidKey: string;
-}
+import { defu } from "defu";
+import type { PublicConfig, PrivateConfig } from "./runtime/types";
+
+export interface ModuleOptions extends PrivateConfig, PublicConfig {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -17,13 +22,67 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     firebaseOptions: {},
     vapidKey: "",
+    serviceAccount: {},
   },
   setup(options, nuxt) {
-    const resolver = createResolver(import.meta.url);
+    const { resolve } = createResolver(import.meta.url);
+    const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
 
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve("./runtime/firebase.client"));
+    addPlugin(resolve(runtimeDir, "firebase.client"));
 
-    nuxt.options.runtimeConfig.public.fcm = options;
+    addServerHandler({
+      route: "/api/fcm/send",
+      handler: resolve(runtimeDir, "server/api/fcm/send.post"),
+    });
+
+    //Create virtual imports for server-side
+    nuxt.hook("nitro:config", (nitroConfig) => {
+      nitroConfig.alias = nitroConfig.alias || {};
+
+      // Inline module runtime in Nitro bundle
+      nitroConfig.externals = defu(
+        typeof nitroConfig.externals === "object" ? nitroConfig.externals : {},
+        {
+          inline: [resolve(runtimeDir)],
+        }
+      );
+      nitroConfig.alias["#fcm"] = resolve(runtimeDir, "server/utils");
+    });
+
+    addTemplate({
+      filename: "types/fcm.d.ts",
+      getContents: () =>
+        [
+          "declare module '#fcm' {",
+          `const app: typeof import('${resolve(
+            runtimeDir,
+            "server/utils"
+          )}').app`,
+          "}",
+        ].join("\n"),
+    });
+
+    // Register #fcm types
+    nuxt.hook("prepare:types", (options) => {
+      options.references.push({
+        path: resolve(nuxt.options.buildDir, "types/fcm.d.ts"),
+      });
+    });
+
+    //Initialize the module options
+    nuxt.options.runtimeConfig = defu(nuxt.options.runtimeConfig, {
+      app: {},
+
+      fcm: {
+        serviceAccount: options.serviceAccount,
+      },
+
+      public: {
+        fcm: {
+          firebaseOptions: options.firebaseOptions,
+          vapidKey: options.vapidKey,
+        },
+      },
+    });
   },
 });

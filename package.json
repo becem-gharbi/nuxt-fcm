@@ -29,7 +29,9 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.3.2",
-    "firebase": "^9.19.1"
+    "defu": "^6.1.2",
+    "firebase": "^9.19.1",
+    "firebase-admin": "^11.5.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",

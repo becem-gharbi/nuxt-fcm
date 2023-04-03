@@ -8,6 +8,9 @@ export default defineNuxtConfig({
       messagingSenderId: process.env.FCM_FIREBASE_OPTIONS_MESSAGING_SENDER_ID,
       appId: process.env.FCM_FIREBASE_OPTIONS_APP_ID,
     },
+
     vapidKey: process.env.FCM_VAPID_KEY,
+
+    serviceAccount: JSON.parse(process.env.FCM_SERVICE_ACCOUNT!),
   },
 });
