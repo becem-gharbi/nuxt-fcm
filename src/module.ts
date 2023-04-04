@@ -36,11 +36,6 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsDir(resolve(runtimeDir, "composables"));
 
     addServerHandler({
-      route: "/api/fcm/send",
-      handler: resolve(runtimeDir, "server/api/fcm/send.post"),
-    });
-
-    addServerHandler({
       route: "/api/fcm/topic/send",
       handler: resolve(runtimeDir, "server/api/fcm/topic/send.post"),
     });

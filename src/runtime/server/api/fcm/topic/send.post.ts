@@ -2,16 +2,25 @@ import { defineEventHandler } from "#imports";
 import { app } from "#fcm";
 import { getMessaging, MessagingPayload } from "firebase-admin/messaging";
 import { readBody } from "h3";
+import { z } from "zod";
 
 export default defineEventHandler(async (event) => {
-  const { topic, payload } = await readBody<{
-    topic: string;
-    payload: MessagingPayload;
-  }>(event);
+  try {
+    const { topic, payload } = await readBody<{
+      topic: string;
+      payload: MessagingPayload;
+    }>(event);
 
-  const messaging = getMessaging(app);
+    const schema = z.object({
+      topic: z.string().min(1),
+    });
 
-  const res = await messaging.sendToTopic(topic, payload);
+    schema.parse({ topic });
 
-  return res;
+    const messaging = getMessaging(app);
+
+    const res = await messaging.sendToTopic(topic, payload);
+
+    return res;
+  } catch (error) {}
 });
