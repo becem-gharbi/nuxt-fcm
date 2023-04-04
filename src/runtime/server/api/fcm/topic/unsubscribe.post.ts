@@ -1,11 +1,13 @@
 import { defineEventHandler } from "#imports";
-import { app, handleError } from "#fcm";
+import { app, handleError, checkPermission } from "#fcm";
 import { getMessaging } from "firebase-admin/messaging";
 import { readBody } from "h3";
 import { z } from "zod";
 
 export default defineEventHandler(async (event) => {
   try {
+    checkPermission(event, "topic", "unsubscribe");
+
     const { topic, token } = await readBody<{ topic: string; token: string }>(
       event
     );

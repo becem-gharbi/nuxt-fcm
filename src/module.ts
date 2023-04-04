@@ -75,6 +75,14 @@ export default defineNuxtModule<ModuleOptions>({
             runtimeDir,
             "server/utils"
           )}').handleError`,
+          `const setPermissions: typeof import('${resolve(
+            runtimeDir,
+            "server/utils"
+          )}').setPermissions`,
+          `const checkPermission: typeof import('${resolve(
+            runtimeDir,
+            "server/utils"
+          )}').checkPermission`,
           "}",
         ].join("\n"),
     });

@@ -14,6 +14,20 @@ export type Fcm = {
   onMessage: (cb: (payload: MessagePayload) => void) => void;
 };
 
+export type Entity = "topic";
+
+export type Permission = "send" | "subscribe" | "unsubscribe";
+
+export interface FcmContext {
+  permissions: {
+    topic: {
+      send: boolean;
+      subscribe: boolean;
+      unsubscribe: boolean;
+    };
+  };
+}
+
 declare module "#app" {
   interface NuxtApp {
     $fcm: Fcm;
