@@ -8,42 +8,56 @@ import type {
 export default function () {
   const { $fcm } = useNuxtApp();
 
-  function send(
-    topic: string,
-    payload: MessagingPayload
-  ): Promise<MessagingTopicResponse> {
+  function send(args: {
+    topic: string;
+    payload: MessagingPayload;
+    authorization?: string;
+  }): Promise<MessagingTopicResponse> {
     return $fetch<MessagingTopicResponse>("/api/fcm/topic/send", {
       method: "POST",
       body: {
-        topic,
-        payload,
+        topic: args.topic,
+        payload: args.payload,
+      },
+      headers: {
+        Authorization: args.authorization || "",
       },
     });
   }
 
-  function subscribe(topic: string): Promise<MessagingTopicManagementResponse> {
+  function subscribe(args: {
+    topic: string;
+    authorization?: string;
+  }): Promise<MessagingTopicManagementResponse> {
     return $fetch<MessagingTopicManagementResponse>(
       "/api/fcm/topic/subscribe",
       {
         method: "POST",
         body: {
           token: $fcm.registrationToken,
-          topic,
+          topic: args.topic,
+        },
+        headers: {
+          Authorization: args.authorization || "",
         },
       }
     );
   }
 
-  function unsubscribe(
-    topic: string
-  ): Promise<MessagingTopicManagementResponse> {
+  function unsubscribe(args: {
+    topic: string;
+    authorization?: string;
+  }): Promise<MessagingTopicManagementResponse> {
     return $fetch<MessagingTopicManagementResponse>(
       "/api/fcm/topic/unsubscribe",
       {
         method: "POST",
         body: {
           token: $fcm.registrationToken,
-          topic,
+          topic: args.topic,
+        },
+        headers: {
+          Authorization: args.authorization || "",
         },
       }
     );

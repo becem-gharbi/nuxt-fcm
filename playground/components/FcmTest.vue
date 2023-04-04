@@ -6,9 +6,9 @@
         <h2 v-if="message">New message</h2>
         <p>{{ message }}</p>
 
-        <button @click="() => subscribe(topic)">Subscribe</button>
+        <button @click="() => subscribe({ topic })">Subscribe</button>
 
-        <button @click="() => unsubscribe(topic)">Unsubscribe</button>
+        <button @click="() => unsubscribe({ topic })">Unsubscribe</button>
 
         <button @click="sendMessage">Send</button>
 
@@ -29,13 +29,18 @@ const { $fcm } = useNuxtApp()
 $fcm.onMessage((payload) => message.value = payload)
 
 async function sendMessage() {
-    send(topic.value, {
-        notification: {
-            title: "From client"
+    send({
+        topic:
+            topic.value,
+        payload: {
+            notification: {
+                title: "From client"
+            },
+            data: {
+                "ok": "true"
+            }
         },
-        data: {
-            "ok": "true"
-        }
+        authorization: "Bearer 123"
     })
 }
 
