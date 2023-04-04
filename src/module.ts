@@ -5,6 +5,7 @@ import {
   createResolver,
   addServerHandler,
   addTemplate,
+  addImportsDir,
 } from "@nuxt/kit";
 import { name, version } from "../package.json";
 import { defu } from "defu";
@@ -19,28 +20,44 @@ export default defineNuxtModule<ModuleOptions>({
     version,
     configKey: "fcm",
   },
-  // Default configuration options of the Nuxt module
+
   defaults: {
     firebaseConfig: {},
     vapidKey: "",
     serviceAccount: {},
   },
+
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
     const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
 
     addPlugin(resolve(runtimeDir, "firebase.client"));
 
+    addImportsDir(resolve(runtimeDir, "composables"));
+
     addServerHandler({
       route: "/api/fcm/send",
       handler: resolve(runtimeDir, "server/api/fcm/send.post"),
     });
 
-    //Create virtual imports for server-side
+    addServerHandler({
+      route: "/api/fcm/topic/send",
+      handler: resolve(runtimeDir, "server/api/fcm/topic/send.post"),
+    });
+
+    addServerHandler({
+      route: "/api/fcm/topic/subscribe",
+      handler: resolve(runtimeDir, "server/api/fcm/topic/subscribe.post"),
+    });
+
+    addServerHandler({
+      route: "/api/fcm/topic/unsubscribe",
+      handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
+    });
+
     nuxt.hook("nitro:config", (nitroConfig) => {
       nitroConfig.alias = nitroConfig.alias || {};
 
-      // Inline module runtime in Nitro bundle
       nitroConfig.externals = defu(
         typeof nitroConfig.externals === "object" ? nitroConfig.externals : {},
         {
@@ -63,14 +80,12 @@ export default defineNuxtModule<ModuleOptions>({
         ].join("\n"),
     });
 
-    // Register #fcm types
     nuxt.hook("prepare:types", (options) => {
       options.references.push({
         path: resolve(nuxt.options.buildDir, "types/fcm.d.ts"),
       });
     });
 
-    //Initialize the module options
     nuxt.options.runtimeConfig = defu(nuxt.options.runtimeConfig, {
       app: {},
 
@@ -84,10 +99,6 @@ export default defineNuxtModule<ModuleOptions>({
           vapidKey: options.vapidKey,
         },
       },
-    });
-
-    nuxt.hook("prepare:types", (ctx) => {
-      ctx.references.push;
     });
   },
 });
