@@ -1,9 +1,10 @@
-import admin from "firebase-admin";
-import { initializeApp } from "firebase-admin/app";
+import { initializeApp, cert, ServiceAccount } from "firebase-admin/app";
 import { privateConfig } from "./config";
 
+const serviceAccount = privateConfig.serviceAccount as ServiceAccount;
+
 const app = initializeApp({
-  credential: admin.credential.cert(privateConfig.serviceAccount),
+  credential: cert(serviceAccount),
 });
 
 export { app };
