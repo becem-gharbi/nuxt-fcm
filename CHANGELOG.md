@@ -1,6 +1,36 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.1.1...v0.1.2)
+
+
+### 🚀 Enhancements
+
+  - Expose firebase instance via app property of $fcm ([8f7903e](https://github.com/becem-gharbi/nuxt-fcm/commit/8f7903e))
+  - Disable server app optionally ([3f081e1](https://github.com/becem-gharbi/nuxt-fcm/commit/3f081e1))
+
+### 🩹 Fixes
+
+  - Import only used deps in firebase server utility ([b99f168](https://github.com/becem-gharbi/nuxt-fcm/commit/b99f168))
+
+### 💅 Refactors
+
+  - Add warning on unfound required module options ([b76cce4](https://github.com/becem-gharbi/nuxt-fcm/commit/b76cce4))
+
+### 📖 Documentation
+
+  - Update readme ([70846cc](https://github.com/becem-gharbi/nuxt-fcm/commit/70846cc))
+
+### 🏡 Chore
+
+  - Set module access to public ([785eecd](https://github.com/becem-gharbi/nuxt-fcm/commit/785eecd))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.1.1
 
 

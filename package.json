@@ -1,6 +1,6 @@
 {
   "name": "@bg-dev/nuxt-fcm",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Nuxt 3 module for integrating Firebase Cloud messaging",
   "repository": "https://github.com/becem-gharbi/nuxt-fcm.git",
   "license": "MIT",
