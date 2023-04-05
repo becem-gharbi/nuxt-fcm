@@ -18,9 +18,13 @@ export default defineNuxtPlugin(async () => {
 
   const messaging = getMessaging(app);
 
-  const registrationToken = await getToken(messaging, {
+  let registrationToken = "";
+
+  await getToken(messaging, {
     vapidKey: publicConfig.vapidKey,
-  });
+  })
+    .then((token) => (registrationToken = token))
+    .catch(console.log);
 
   const fcm: Fcm = {
     app,
