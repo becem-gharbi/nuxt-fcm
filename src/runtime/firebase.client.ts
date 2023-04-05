@@ -1,6 +1,6 @@
 import { defineNuxtPlugin, useRuntimeConfig } from "#app";
 import { initializeApp } from "firebase/app";
-import { getMessaging } from "firebase/messaging";
+import { getMessaging, getToken } from "firebase/messaging";
 import { getAnalytics } from "firebase/analytics";
 import { Fcm } from "./types";
 
@@ -16,6 +16,8 @@ export default defineNuxtPlugin(() => {
   const analytics = publicConfig.analytics ? getAnalytics(app) : undefined;
 
   const messaging = getMessaging(app);
+
+  getToken(messaging).catch(console.warn);
 
   const fcm: Fcm = {
     messaging,

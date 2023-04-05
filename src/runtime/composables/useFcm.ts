@@ -6,7 +6,7 @@ export default function () {
   const { $fcm } = useNuxtApp();
 
   function getRegistrationToken(): Promise<string> {
-    return getToken($fcm.messaging);
+    return getToken($fcm.messaging).catch(() => "");
   }
 
   function onMessageReceived(cb: (payload: MessagePayload) => void) {

@@ -1,6 +1,5 @@
-import type { MessagePayload, Messaging } from "firebase/messaging";
-import type { MessagePayload, Analytics } from "firebase/analytics";
-import type { FirebaseApp } from "firebase/app";
+import type { Messaging } from "firebase/messaging";
+import type { Analytics } from "firebase/analytics";
 
 export type PublicConfig = {
   firebaseConfig: Record<string, string>;
