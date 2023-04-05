@@ -39,11 +39,9 @@
   "dependencies": {
     "@nuxt/kit": "^3.3.3",
     "defu": "^6.1.2",
+    "firebase": "^9.19.1",
     "firebase-admin": "^11.5.0",
     "zod": "^3.21.4"
-  },
-  "peerDependencies": {
-    "firebase": "^9.19.1"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
@@ -52,7 +50,6 @@
     "@nuxt/test-utils": "^3.3.3",
     "changelogen": "^0.5.2",
     "eslint": "^8.37.0",
-    "firebase": "^9.19.1",
     "nuxt": "^3.3.3",
     "vitest": "^0.29.8"
   }

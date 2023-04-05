@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>Registration token</h2>
-        <p>{{ $fcm.registrationToken }}</p>
+        <p>{{ registrationToken }}</p>
 
         <h2 v-if="message">New message</h2>
         <p>{{ message }}</p>
@@ -16,7 +16,7 @@
 </template>
   
 <script setup>
-import { useNuxtApp, ref, useFcmTopic } from '#imports';
+import { ref, useFcmTopic, useFcm } from '#imports';
 
 const message = ref("")
 
@@ -24,9 +24,11 @@ const topic = ref("topic_2")
 
 const { send, subscribe, unsubscribe } = useFcmTopic()
 
-const { $fcm } = useNuxtApp()
+const { onMessageReceived, getRegistrationToken } = useFcm()
 
-$fcm.onMessage((payload) => message.value = payload)
+const registrationToken = await getRegistrationToken()
+
+onMessageReceived((payload) => message.value = payload)
 
 async function sendMessage() {
     send({

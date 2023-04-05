@@ -1,12 +1,12 @@
-import { useNuxtApp } from "#imports";
 import type {
   MessagingPayload,
   MessagingTopicResponse,
   MessagingTopicManagementResponse,
 } from "firebase-admin/messaging";
+import useFcm from "./useFcm";
 
 export default function () {
-  const { $fcm } = useNuxtApp();
+  const { getRegistrationToken } = useFcm();
 
   function send(args: {
     topic: string;
@@ -25,16 +25,18 @@ export default function () {
     });
   }
 
-  function subscribe(args: {
+  async function subscribe(args: {
     topic: string;
     authorization?: string;
   }): Promise<MessagingTopicManagementResponse> {
+    const token = await getRegistrationToken();
+
     return $fetch<MessagingTopicManagementResponse>(
       "/api/fcm/topic/subscribe",
       {
         method: "POST",
         body: {
-          token: $fcm.registrationToken,
+          token: token,
           topic: args.topic,
         },
         headers: {
@@ -44,16 +46,18 @@ export default function () {
     );
   }
 
-  function unsubscribe(args: {
+  async function unsubscribe(args: {
     topic: string;
     authorization?: string;
   }): Promise<MessagingTopicManagementResponse> {
+    const token = await getRegistrationToken();
+
     return $fetch<MessagingTopicManagementResponse>(
       "/api/fcm/topic/unsubscribe",
       {
         method: "POST",
         body: {
-          token: $fcm.registrationToken,
+          token: token,
           topic: args.topic,
         },
         headers: {
@@ -63,5 +67,5 @@ export default function () {
     );
   }
 
-  return { send, subscribe, unsubscribe };
+  return { send, subscribe, unsubscribe, getRegistrationToken };
 }

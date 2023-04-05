@@ -113,6 +113,7 @@ export default defineNuxtModule<ModuleOptions>({
         fcm: {
           firebaseConfig: options.firebaseConfig,
           vapidKey: options.vapidKey,
+          analytics: options.analytics,
         },
       },
     });

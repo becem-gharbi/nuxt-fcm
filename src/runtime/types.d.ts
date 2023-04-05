@@ -1,9 +1,11 @@
-import type { MessagePayload } from "firebase/messaging";
+import type { MessagePayload, Messaging } from "firebase/messaging";
+import type { MessagePayload, Analytics } from "firebase/analytics";
 import type { FirebaseApp } from "firebase/app";
 
 export type PublicConfig = {
   firebaseConfig: Record<string, string>;
   vapidKey: string;
+  analytics: boolean;
 };
 
 export type PrivateConfig = {
@@ -11,8 +13,8 @@ export type PrivateConfig = {
 };
 
 export type Fcm = {
-  registrationToken: string;
-  onMessage: (cb: (payload: MessagePayload) => void) => void;
+  messaging: Messaging;
+  analytics?: Analytics;
 };
 
 export type Entity = "topic";

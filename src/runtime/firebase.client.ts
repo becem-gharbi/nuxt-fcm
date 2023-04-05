@@ -1,36 +1,25 @@
 import { defineNuxtPlugin, useRuntimeConfig } from "#app";
 import { initializeApp } from "firebase/app";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { getMessaging } from "firebase/messaging";
+import { getAnalytics } from "firebase/analytics";
 import { Fcm } from "./types";
 
-export default defineNuxtPlugin(async () => {
+export default defineNuxtPlugin(() => {
   const publicConfig = useRuntimeConfig().public.fcm;
 
   if (!publicConfig.firebaseConfig || !publicConfig.vapidKey) {
-    return {
-      provide: {
-        fcm: {},
-      },
-    };
+    return;
   }
 
   const app = initializeApp(publicConfig.firebaseConfig);
 
+  const analytics = publicConfig.analytics ? getAnalytics(app) : undefined;
+
   const messaging = getMessaging(app);
 
-  let registrationToken = "";
-
-  await getToken(messaging, {
-    vapidKey: publicConfig.vapidKey,
-  })
-    .then((token) => (registrationToken = token))
-    .catch(console.log);
-
   const fcm: Fcm = {
-    registrationToken,
-    onMessage: (cb) => {
-      onMessage(messaging, cb);
-    },
+    messaging,
+    analytics,
   };
 
   return {
