@@ -27,7 +27,6 @@ export default defineNuxtPlugin(async () => {
     .catch(console.log);
 
   const fcm: Fcm = {
-    app,
     registrationToken,
     onMessage: (cb) => {
       onMessage(messaging, cb);

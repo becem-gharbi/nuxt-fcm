@@ -1,8 +1,9 @@
 import { getAnalytics } from "firebase/analytics";
-import { defineNuxtPlugin, useNuxtApp } from "#imports";
+import { getApp } from "firebase/app";
+import { defineNuxtPlugin } from "#imports";
 
 export default defineNuxtPlugin(() => {
-  const { $fcm } = useNuxtApp();
+  const app = getApp();
 
-  getAnalytics($fcm.app);
+  getAnalytics(app);
 });

@@ -11,7 +11,6 @@ export type PrivateConfig = {
 };
 
 export type Fcm = {
-  app: FirebaseApp;
   registrationToken: string;
   onMessage: (cb: (payload: MessagePayload) => void) => void;
 };
