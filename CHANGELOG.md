@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.0...v0.2.1)
+
+
+### 🩹 Fixes
+
+  - Add firebase as peer dependency ([8cd7976](https://github.com/becem-gharbi/nuxt-fcm/commit/8cd7976))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.2.0
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.1.4...v0.2.0)
