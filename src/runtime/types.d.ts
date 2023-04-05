@@ -7,7 +7,7 @@ export type PublicConfig = {
 };
 
 export type PrivateConfig = {
-  serviceAccount: Record<string, string>;
+  serviceAccount?: Record<string, string>;
 };
 
 export type Fcm = {

@@ -6,6 +6,7 @@ import {
   addServerHandler,
   addTemplate,
   addImportsDir,
+  logger,
 } from "@nuxt/kit";
 import { name, version } from "../package.json";
 import { defu } from "defu";
@@ -24,31 +25,32 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     firebaseConfig: {},
     vapidKey: "",
-    serviceAccount: {},
   },
 
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
     const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
 
-    addPlugin(resolve(runtimeDir, "firebase.client"));
+    if (!options.serviceAccount) {
+      logger.info(
+        `[${name}] Please make sure to set serviceAccount if your using app server`
+      );
+    } else {
+      addServerHandler({
+        route: "/api/fcm/topic/send",
+        handler: resolve(runtimeDir, "server/api/fcm/topic/send.post"),
+      });
 
-    addImportsDir(resolve(runtimeDir, "composables"));
+      addServerHandler({
+        route: "/api/fcm/topic/subscribe",
+        handler: resolve(runtimeDir, "server/api/fcm/topic/subscribe.post"),
+      });
 
-    addServerHandler({
-      route: "/api/fcm/topic/send",
-      handler: resolve(runtimeDir, "server/api/fcm/topic/send.post"),
-    });
-
-    addServerHandler({
-      route: "/api/fcm/topic/subscribe",
-      handler: resolve(runtimeDir, "server/api/fcm/topic/subscribe.post"),
-    });
-
-    addServerHandler({
-      route: "/api/fcm/topic/unsubscribe",
-      handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
-    });
+      addServerHandler({
+        route: "/api/fcm/topic/unsubscribe",
+        handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
+      });
+    }
 
     nuxt.hook("nitro:config", (nitroConfig) => {
       nitroConfig.alias = nitroConfig.alias || {};
@@ -92,6 +94,10 @@ export default defineNuxtModule<ModuleOptions>({
         path: resolve(nuxt.options.buildDir, "types/fcm.d.ts"),
       });
     });
+
+    addPlugin(resolve(runtimeDir, "firebase.client"));
+
+    addImportsDir(resolve(runtimeDir, "composables"));
 
     nuxt.options.runtimeConfig = defu(nuxt.options.runtimeConfig, {
       app: {},
