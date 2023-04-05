@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.1.4
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.1.3...v0.1.4)
+
+
+### 💅 Refactors
+
+  - Set firebase as peer dep ([28c5fdc](https://github.com/becem-gharbi/nuxt-fcm/commit/28c5fdc))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.1.3
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.1.2...v0.1.3)
