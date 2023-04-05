@@ -5,15 +5,12 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-A Nuxt 3 module for integrating Firebase Cloud messaging. Based on Firebase JS SDK for client side and Firebase Admin SDK for server side.
+A Nuxt 3 module for integrating Firebase Cloud messaging. This module is based on Firebase JS SDK for client app and Firebase Admin SDK for app server.
 
 ## Features
 
 - ✔️ Listen to messages via `$fcm` helper
-- ✔️ Topic related operations via `useFcmTopic` composable
-  - Send messages to a topic
-  - Subscribe to a topic
-  - Unsubscribe from a topic
+- ✔️ Send & subscribe & unsubscribe from topics via `useFcmTopic` composable
 
 ## Quick Setup
 
@@ -32,14 +29,16 @@ yarn add --dev @bg-dev/nuxt-fcm
 ```js
 export default defineNuxtConfig({
   modules: ["@bg-dev/nuxt-fcm"],
+
+  fcm: {},
 });
 ```
 
-3. Set `fcm` module config options
+3. Set `fcm` config object
 
 - `firebaseConfig` Firebase project configuration
-- `vapidKey` Web push credentials [link](https://firebase.google.com/docs/cloud-messaging/js/client?authuser=0#configure_web_credentials_with)
-- `serviceAccount` Firebase admin credentials [link](https://firebase.google.com/docs/admin/setup?authuser=0#initialize_the_sdk_in_non-google_environments)
+- `vapidKey` Public server key provided to push services [docs](https://firebase.google.com/docs/cloud-messaging/js/client?authuser=0#configure_web_credentials_with)
+- `serviceAccount` Firebase admin credentials [docs](https://firebase.google.com/docs/admin/setup?authuser=0#initialize_the_sdk_in_non-google_environments). You can dismiss this property in case the app server is not needed.
 
 4. Add firebase messaging service worker by creating `firebase-messaging-sw.js` file under `public` folder
 
@@ -69,7 +68,7 @@ messaging.onBackgroundMessage((payload) => {
 });
 ```
 
-That's it! You can now use Nuxt Firebase Messaging in your Nuxt app ✨
+That's it! You can now use Nuxt FCM in your Nuxt app ✨
 
 ## Usage
 
@@ -94,7 +93,9 @@ export default defineEventHandler((event) => {
 ```
 
 ### Listen to messages
-When a push message is received and the user is currently on a page for your origin, the message is passed to the page and an onMessage() event is dispatched with the payload of the push message. 
+
+When a push message is received and the page is open (in foreground), the message is passed to the page and an onMessage() event is dispatched with the payload of the push message.
+
 ```js
 // Note that $fcm is available client side only.
 
@@ -103,6 +104,27 @@ const { $fcm } = useNuxtApp();
 $fcm.onMessage(console.log);
 ```
 
+### Use other firebase services
+
+You can extend the module with other services provided by Firebase
+
+```js
+// /plugins/analytics.client.ts
+
+import { getAnalytics } from "firebase/analytics";
+import { defineNuxtPlugin, useNuxtApp } from "#imports";
+
+export default defineNuxtPlugin(() => {
+  const { $fcm } = useNuxtApp();
+
+  getAnalytics($fcm.app);
+});
+```
+
+## Appendix
+
+- FCM architecture [docs](https://firebase.google.com/docs/cloud-messaging/fcm-architecture)
+- Message types [docs](https://firebase.google.com/docs/cloud-messaging/concept-options)
 
 ## Development
 
