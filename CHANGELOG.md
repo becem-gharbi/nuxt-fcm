@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.2.0
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.1.4...v0.2.0)
+
+
+### 💅 Refactors
+
+  - ⚠️  Add useFcm composable in favor of fcm helper ([efda111](https://github.com/becem-gharbi/nuxt-fcm/commit/efda111))
+
+#### ⚠️  Breaking Changes
+
+  - ⚠️  Add useFcm composable in favor of fcm helper ([efda111](https://github.com/becem-gharbi/nuxt-fcm/commit/efda111))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.1.4
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.1.3...v0.1.4)
