@@ -6,6 +6,14 @@ import { Fcm } from "./types";
 export default defineNuxtPlugin(async () => {
   const publicConfig = useRuntimeConfig().public.fcm;
 
+  if (!publicConfig.firebaseConfig || !publicConfig.vapidKey) {
+    return {
+      provide: {
+        fcm: {},
+      },
+    };
+  }
+
   const app = initializeApp(publicConfig.firebaseConfig);
 
   const messaging = getMessaging(app);

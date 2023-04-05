@@ -22,14 +22,17 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: "fcm",
   },
 
-  defaults: {
-    firebaseConfig: {},
-    vapidKey: "",
-  },
-
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
     const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
+
+    if (!options.firebaseConfig) {
+      logger.warn(`[${name}] Please make sure to set firebaseConfig`);
+    }
+
+    if (!options.vapidKey) {
+      logger.warn(`[${name}] Please make sure to set vapidKey`);
+    }
 
     if (!options.serviceAccount) {
       logger.info(

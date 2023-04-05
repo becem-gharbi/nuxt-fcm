@@ -4,5 +4,5 @@ import { defineNuxtPlugin, useNuxtApp } from "#imports";
 export default defineNuxtPlugin(() => {
   const { $fcm } = useNuxtApp();
 
-  getAnalytics($fcm.app);
+  // getAnalytics($fcm.app);
 });
