@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.1.3
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.1.2...v0.1.3)
+
+
+### 🩹 Fixes
+
+  - Catch getToken errors ([0a71f7b](https://github.com/becem-gharbi/nuxt-fcm/commit/0a71f7b))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.1.2
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.1.1...v0.1.2)
