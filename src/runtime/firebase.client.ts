@@ -7,6 +7,7 @@ export default defineNuxtPlugin(async () => {
   const publicConfig = useRuntimeConfig().public.fcm;
 
   const app = initializeApp(publicConfig.firebaseConfig);
+
   const messaging = getMessaging(app);
 
   const registrationToken = await getToken(messaging, {
@@ -14,6 +15,7 @@ export default defineNuxtPlugin(async () => {
   });
 
   const fcm: Fcm = {
+    app,
     registrationToken,
     onMessage: (cb) => {
       onMessage(messaging, cb);

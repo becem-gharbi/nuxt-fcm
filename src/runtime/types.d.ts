@@ -1,4 +1,5 @@
 import type { MessagePayload } from "firebase/messaging";
+import type { FirebaseApp } from "firebase/app";
 
 export type PublicConfig = {
   firebaseConfig: Record<string, string>;
@@ -10,6 +11,7 @@ export type PrivateConfig = {
 };
 
 export type Fcm = {
+  app: FirebaseApp;
   registrationToken: string;
   onMessage: (cb: (payload: MessagePayload) => void) => void;
 };
