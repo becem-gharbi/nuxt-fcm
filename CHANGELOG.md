@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.2.2
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.1...v0.2.2)
+
+
+### 🩹 Fixes
+
+  - Ask notification permission on page load ([dc5ae7f](https://github.com/becem-gharbi/nuxt-fcm/commit/dc5ae7f))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.2.1
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.0...v0.2.1)
