@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v0.2.3
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.2...v0.2.3)
+
+
+### 🩹 Fixes
+
+  - Set firebase-admin as peer dep ([40d48f2](https://github.com/becem-gharbi/nuxt-fcm/commit/40d48f2))
+
+### 💅 Refactors
+
+  - Remove analytics, can be implemented externally ([d51038e](https://github.com/becem-gharbi/nuxt-fcm/commit/d51038e))
+  - Rename onMessageReceived to onMessage & getRegistrationToken to getToken ([9b2096e](https://github.com/becem-gharbi/nuxt-fcm/commit/9b2096e))
+  - Code refactor ([ab5e4b4](https://github.com/becem-gharbi/nuxt-fcm/commit/ab5e4b4))
+
+### 📖 Documentation
+
+  - Add module extension section ([038e171](https://github.com/becem-gharbi/nuxt-fcm/commit/038e171))
+  - Update readme ([47d4ed5](https://github.com/becem-gharbi/nuxt-fcm/commit/47d4ed5))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.2.2
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.1...v0.2.2)
