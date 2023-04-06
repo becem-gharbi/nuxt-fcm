@@ -19,10 +19,10 @@ A Nuxt 3 module for integrating Firebase Cloud messaging. This module is based o
 
 ```bash
 # Using npm
-npm install @bg-dev/nuxt-fcm firebase firebase-admin
+npm install --save-dev @bg-dev/nuxt-fcm
 
 # Using yarn
-yarn add @bg-dev/nuxt-fcm firebase firebase-admin
+yarn add --dev @bg-dev/nuxt-fcm
 ```
 
 2. Add `@bg-dev/nuxt-fcm` to the `modules` section of `nuxt.config.ts`
@@ -46,8 +46,12 @@ export default defineNuxtConfig({
 ```js
 // /public/firebase-messaging-sw.js
 
-importScripts("https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js");
-importScripts("https://www.gstatic.com/firebasejs/9.19.1/firebase-messaging-compat.js");
+importScripts(
+  "https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"
+);
+importScripts(
+  "https://www.gstatic.com/firebasejs/9.19.1/firebase-messaging-compat.js"
+);
 
 const firebaseConfig = {
   // Paste your firebase project configuration

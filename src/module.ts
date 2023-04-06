@@ -38,22 +38,41 @@ export default defineNuxtModule<ModuleOptions>({
       logger.info(
         `[${name}] Please make sure to set serviceAccount if your using app server`
       );
-    } else {
-      addServerHandler({
-        route: "/api/fcm/topic/send",
-        handler: resolve(runtimeDir, "server/api/fcm/topic/send.post"),
-      });
-
-      addServerHandler({
-        route: "/api/fcm/topic/subscribe",
-        handler: resolve(runtimeDir, "server/api/fcm/topic/subscribe.post"),
-      });
-
-      addServerHandler({
-        route: "/api/fcm/topic/unsubscribe",
-        handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
-      });
     }
+
+    nuxt.options.runtimeConfig = defu(nuxt.options.runtimeConfig, {
+      app: {},
+
+      fcm: {
+        serviceAccount: options.serviceAccount,
+      },
+
+      public: {
+        fcm: {
+          firebaseConfig: options.firebaseConfig,
+          vapidKey: options.vapidKey,
+        },
+      },
+    });
+
+    addPlugin(resolve(runtimeDir, "firebase.client"));
+
+    addImportsDir(resolve(runtimeDir, "composables"));
+
+    addServerHandler({
+      route: "/api/fcm/topic/send",
+      handler: resolve(runtimeDir, "server/api/fcm/topic/send.post"),
+    });
+
+    addServerHandler({
+      route: "/api/fcm/topic/subscribe",
+      handler: resolve(runtimeDir, "server/api/fcm/topic/subscribe.post"),
+    });
+
+    addServerHandler({
+      route: "/api/fcm/topic/unsubscribe",
+      handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
+    });
 
     nuxt.hook("nitro:config", (nitroConfig) => {
       nitroConfig.alias = nitroConfig.alias || {};
@@ -96,25 +115,6 @@ export default defineNuxtModule<ModuleOptions>({
       options.references.push({
         path: resolve(nuxt.options.buildDir, "types/fcm.d.ts"),
       });
-    });
-
-    addPlugin(resolve(runtimeDir, "firebase.client"));
-
-    addImportsDir(resolve(runtimeDir, "composables"));
-
-    nuxt.options.runtimeConfig = defu(nuxt.options.runtimeConfig, {
-      app: {},
-
-      fcm: {
-        serviceAccount: options.serviceAccount,
-      },
-
-      public: {
-        fcm: {
-          firebaseConfig: options.firebaseConfig,
-          vapidKey: options.vapidKey,
-        },
-      },
     });
   },
 });
