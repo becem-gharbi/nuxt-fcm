@@ -24,11 +24,11 @@ const topic = ref("topic_2")
 
 const { send, subscribe, unsubscribe } = useFcmTopic()
 
-const { onMessageReceived, getRegistrationToken } = useFcm()
+const { onMessage, getToken } = useFcm()
 
-const registrationToken = await getRegistrationToken()
+const registrationToken = await getToken()
 
-onMessageReceived((payload) => message.value = payload)
+onMessage((payload) => message.value = payload)
 
 async function sendMessage() {
     send({

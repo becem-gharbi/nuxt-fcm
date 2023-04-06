@@ -6,7 +6,7 @@ import type {
 import useFcm from "./useFcm";
 
 export default function () {
-  const { getRegistrationToken } = useFcm();
+  const { getToken } = useFcm();
 
   function send(args: {
     topic: string;
@@ -29,7 +29,7 @@ export default function () {
     topic: string;
     authorization?: string;
   }): Promise<MessagingTopicManagementResponse> {
-    const token = await getRegistrationToken();
+    const token = await getToken();
 
     return $fetch<MessagingTopicManagementResponse>(
       "/api/fcm/topic/subscribe",
@@ -50,7 +50,7 @@ export default function () {
     topic: string;
     authorization?: string;
   }): Promise<MessagingTopicManagementResponse> {
-    const token = await getRegistrationToken();
+    const token = await getToken();
 
     return $fetch<MessagingTopicManagementResponse>(
       "/api/fcm/topic/unsubscribe",
@@ -67,5 +67,5 @@ export default function () {
     );
   }
 
-  return { send, subscribe, unsubscribe, getRegistrationToken };
+  return { send, subscribe, unsubscribe };
 }

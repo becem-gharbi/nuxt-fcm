@@ -99,9 +99,9 @@ When a push message is received and the page is open (in foreground), the messag
 ```js
 // Note that useFcm() is usable client side only.
 
-const { onMessageReceived } = useFcm();
+const { onMessage } = useFcm();
 
-onMessageReceived(console.log);
+onMessage(console.log);
 ```
 
 ## Appendix

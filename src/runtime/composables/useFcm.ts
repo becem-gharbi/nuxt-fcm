@@ -1,17 +1,17 @@
-import { MessagePayload, getToken } from "firebase/messaging";
+import { MessagePayload, getToken as _getToken } from "firebase/messaging";
 import { useNuxtApp } from "#imports";
-import { onMessage } from "firebase/messaging";
+import { onMessage as _onMessage } from "firebase/messaging";
 
 export default function () {
   const { $fcm } = useNuxtApp();
 
-  async function getRegistrationToken(): Promise<string> {
-    return getToken($fcm.messaging).catch(() => "");
+  async function getToken(): Promise<string> {
+    return _getToken($fcm.messaging).catch(() => "");
   }
 
-  function onMessageReceived(cb: (payload: MessagePayload) => void) {
-    onMessage($fcm.messaging, cb);
+  function onMessage(cb: (payload: MessagePayload) => void) {
+    _onMessage($fcm.messaging, cb);
   }
 
-  return { getRegistrationToken, onMessageReceived };
+  return { getToken, onMessage };
 }
