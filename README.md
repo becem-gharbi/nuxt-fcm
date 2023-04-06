@@ -5,13 +5,12 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-A Nuxt 3 module for integrating Firebase Cloud messaging. This module is based on Firebase JS SDK for client app and Firebase Admin SDK for app server.
+A Nuxt 3 module for integrating Firebase Cloud messaging. This module is based on Firebase JS SDK for client app and Firebase Admin SDK for app server
 
 ## Features
 
 - ✔️ Listen to messages via `useFcm` composable
-- ✔️ Send & subscribe & unsubscribe from topics via `useFcmTopic` composable
-- ✔️ Extendable by other Firebase services
+- ✔️ Send, subscribe & unsubscribe from topics via `useFcmTopic` composable
 
 ## Quick Setup
 
@@ -39,12 +38,12 @@ export default defineNuxtConfig({
 
 - `firebaseConfig` Firebase project configuration
 - `vapidKey` Public server key provided to push services [docs](https://firebase.google.com/docs/cloud-messaging/js/client?authuser=0#configure_web_credentials_with)
-- `serviceAccount` Firebase admin credentials [docs](https://firebase.google.com/docs/admin/setup?authuser=0#initialize_the_sdk_in_non-google_environments). You can dismiss this property in case the app server is not needed.
+- `serviceAccount` Firebase admin credentials [docs](https://firebase.google.com/docs/admin/setup?authuser=0#initialize_the_sdk_in_non-google_environments). You can ignore this property in case the app server is not needed.
 
 4. Add firebase messaging service worker by creating `firebase-messaging-sw.js` file under `public` folder
 
 ```js
-// /public/firebase-messaging-sw.js
+// public/firebase-messaging-sw.js
 
 importScripts(
   "https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"
@@ -75,10 +74,10 @@ That's it! You can now use Nuxt FCM in your Nuxt app ✨
 
 ### Authorization
 
-By default all the module's features are inaccessible. Add a server side middleware in order to check the user's role and set the permissions accordingly.
+By default all the topic's related features are inaccessible. Add a server side middleware in order to check the user's role and set the permissions accordingly.
 
 ```js
-// /server/middleware/fcm.ts
+// server/middleware/fcm.ts
 
 import { setPermissions } from "#fcm";
 
@@ -98,26 +97,36 @@ export default defineEventHandler((event) => {
 When a push message is received and the page is open (in foreground), the message is passed to the page and an onMessage() event is dispatched with the payload of the push message.
 
 ```js
-// Note that useFcm() is usable client side only.
+// Note that useFcm() is usable client side only
 
 const { onMessage } = useFcm();
 
 onMessage(console.log);
 ```
 
-### Use other firebase services
+### Add other firebase services
 
-You can extend the module with other services provided by Firebase
+You can integrate other Firebase services such as Google Analytics to provide insights into user behavior and engagement stats
 
 ```js
-// /plugins/analytics.client.ts
+// nuxt.config.ts
+// Exclude package from vite optimization
+
+  vite: {
+    optimizeDeps: {
+      exclude: ["firebase/analytics"],
+    },
+  },
+```
+
+```js
+// plugins/analytics.client.ts
+// Define a client side plugin to expose the service's instance
 
 import { getAnalytics } from "firebase/analytics";
 
 export default defineNuxtPlugin(() => {
-  const { $fcm } = useNuxtApp();
-
-  const analytics = getAnalytics($fcm.messaging.app);
+  const analytics = getAnalytics();
 
   return {
     provide: {
