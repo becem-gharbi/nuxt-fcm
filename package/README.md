@@ -11,7 +11,6 @@ A Nuxt 3 module for integrating Firebase Cloud messaging. This module is based o
 
 - ✔️ Listen to messages via `useFcm` composable
 - ✔️ Send & subscribe & unsubscribe from topics via `useFcmTopic` composable
-- ✔️ Extendable by other Firebase services
 
 ## Quick Setup
 
