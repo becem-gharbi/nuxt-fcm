@@ -104,6 +104,28 @@ const { onMessage } = useFcm();
 onMessage(console.log);
 ```
 
+### Use other firebase services
+
+You can extend the module with other services provided by Firebase
+
+```js
+// /plugins/analytics.client.ts
+
+import { getAnalytics } from "firebase/analytics";
+
+export default defineNuxtPlugin(() => {
+  const { $fcm } = useNuxtApp();
+
+  const analytics = getAnalytics($fcm.messaging.app);
+
+  return {
+    provide: {
+      analytics,
+    },
+  };
+});
+```
+
 ## Appendix
 
 - FCM architecture [docs](https://firebase.google.com/docs/cloud-messaging/fcm-architecture)
