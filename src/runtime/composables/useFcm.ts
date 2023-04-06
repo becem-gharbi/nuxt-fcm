@@ -5,7 +5,7 @@ import { onMessage } from "firebase/messaging";
 export default function () {
   const { $fcm } = useNuxtApp();
 
-  function getRegistrationToken(): Promise<string> {
+  async function getRegistrationToken(): Promise<string> {
     return getToken($fcm.messaging).catch(() => "");
   }
 

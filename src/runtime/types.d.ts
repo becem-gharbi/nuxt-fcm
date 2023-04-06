@@ -1,10 +1,8 @@
 import type { Messaging } from "firebase/messaging";
-import type { Analytics } from "firebase/analytics";
 
 export type PublicConfig = {
   firebaseConfig: Record<string, string>;
   vapidKey: string;
-  analytics: boolean;
 };
 
 export type PrivateConfig = {
@@ -13,7 +11,6 @@ export type PrivateConfig = {
 
 export type Fcm = {
   messaging: Messaging;
-  analytics?: Analytics;
 };
 
 export type Entity = "topic";

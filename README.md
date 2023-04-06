@@ -36,7 +36,6 @@ export default defineNuxtConfig({
 
 3. Set `fcm` config object
 
-- `analytics` Enable Google Analytics (disabled by default)
 - `firebaseConfig` Firebase project configuration
 - `vapidKey` Public server key provided to push services [docs](https://firebase.google.com/docs/cloud-messaging/js/client?authuser=0#configure_web_credentials_with)
 - `serviceAccount` Firebase admin credentials [docs](https://firebase.google.com/docs/admin/setup?authuser=0#initialize_the_sdk_in_non-google_environments). You can dismiss this property in case the app server is not needed.
