@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.2.4
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.3...v0.2.4)
+
+
+### 📖 Documentation
+
+  - Update readme ([e57f14d](https://github.com/becem-gharbi/nuxt-fcm/commit/e57f14d))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.2.3
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.2...v0.2.3)
