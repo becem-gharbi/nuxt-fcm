@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.2.5
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.4...v0.2.5)
+
+
+### 🩹 Fixes
+
+  - Check serviceAccount before firebase admin init ([54511e8](https://github.com/becem-gharbi/nuxt-fcm/commit/54511e8))
+
+### 🏡 Chore
+
+  - Upgrade dependencies ([127912a](https://github.com/becem-gharbi/nuxt-fcm/commit/127912a))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.2.4
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.3...v0.2.4)
