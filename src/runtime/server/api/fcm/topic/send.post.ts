@@ -19,6 +19,12 @@ export default defineEventHandler(async (event) => {
 
     schema.parse({ topic });
 
+    if (!app) {
+      throw new Error(
+        "App server not initialized, make sure to set service Account"
+      );
+    }
+
     const messaging = getMessaging(app);
 
     const res = await messaging.sendToTopic(topic, payload);

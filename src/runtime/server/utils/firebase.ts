@@ -3,8 +3,10 @@ import { privateConfig } from "./config";
 
 const serviceAccount = privateConfig.serviceAccount as ServiceAccount;
 
-const app = initializeApp({
-  credential: cert(serviceAccount),
-});
+const app =
+  serviceAccount &&
+  initializeApp({
+    credential: cert(serviceAccount),
+  });
 
 export { app };
