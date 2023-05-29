@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.2.6
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.5...v0.2.6)
+
+
+### 🩹 Fixes
+
+  - Handle undefined `messaging` on ssr ([a81395c](https://github.com/becem-gharbi/nuxt-fcm/commit/a81395c))
+
+### 🏡 Chore
+
+  - Upgrade dependencies ([0d2c6f9](https://github.com/becem-gharbi/nuxt-fcm/commit/0d2c6f9))
+
+### ❤️  Contributors
+
+- Becem Gharbi ([@becem-gharbi](http://github.com/becem-gharbi))
+
 ## v0.2.5
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.4...v0.2.5)
