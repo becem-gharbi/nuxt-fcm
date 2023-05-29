@@ -10,7 +10,7 @@ export default function () {
   }
 
   function onMessage(cb: (payload: MessagePayload) => void) {
-    $fcm && _onMessage($fcm?.messaging, cb);
+    $fcm && _onMessage($fcm.messaging, cb);
   }
 
   return { getToken, onMessage };

@@ -37,20 +37,20 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.5.0",
+    "@nuxt/kit": "^3.5.2",
     "defu": "^6.1.2",
     "zod": "^3.21.4"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@nuxt/module-builder": "^0.3.1",
-    "@nuxt/schema": "^3.5.0",
-    "@nuxt/test-utils": "^3.5.0",
+    "@nuxt/module-builder": "^0.4.0",
+    "@nuxt/schema": "^3.5.2",
+    "@nuxt/test-utils": "^3.5.2",
     "changelogen": "^0.5.3",
     "eslint": "^8.41.0",
-    "firebase": "^9.22.0",
+    "firebase": "^9.22.1",
     "firebase-admin": "^11.8.0",
-    "nuxt": "^3.5.0",
+    "nuxt": "^3.5.2",
     "vitest": "^0.31.1"
   },
   "peerDependencies": {
