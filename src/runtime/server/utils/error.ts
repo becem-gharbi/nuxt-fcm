@@ -12,7 +12,7 @@ export function handleError(error: any) {
     h3Error.statusCode = 401;
   } else {
     h3Error.message = error.message;
-    h3Error.statusCode = 400;
+    h3Error.statusCode = 500;
   }
 
   throw createError(h3Error);
