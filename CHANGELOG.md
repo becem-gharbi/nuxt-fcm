@@ -1,6 +1,33 @@
 # Changelog
 
 
+## v0.2.7
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.6...v0.2.7)
+
+### 🚀 Enhancements
+
+- Dynamically serve firebase-messaging service worker ([90d1263](https://github.com/becem-gharbi/nuxt-fcm/commit/90d1263))
+
+### 🩹 Fixes
+
+- Set status code to 500 on server errors ([77cfee1](https://github.com/becem-gharbi/nuxt-fcm/commit/77cfee1))
+
+### 📖 Documentation
+
+- Add enable `Cloud Messaging` note ([537d2af](https://github.com/becem-gharbi/nuxt-fcm/commit/537d2af))
+- Remove service worker setup ([15fc80b](https://github.com/becem-gharbi/nuxt-fcm/commit/15fc80b))
+
+### 🏡 Chore
+
+- **deps-dev:** Bump protobufjs from 6.11.3 to 6.11.4 ([7189f82](https://github.com/becem-gharbi/nuxt-fcm/commit/7189f82))
+- Upgrade dependencies ([a62da6f](https://github.com/becem-gharbi/nuxt-fcm/commit/a62da6f))
+
+### ❤️ Contributors
+
+- Becem Gharbi <becem.gharbi@live.com>
+- Becem <becem.gharbi@live.com>
+
 ## v0.2.6
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.5...v0.2.6)
