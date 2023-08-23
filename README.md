@@ -42,33 +42,6 @@ export default defineNuxtConfig({
 
 4. If you are using app server, make sure to enable `Cloud messaging API` [docs](https://firebase.google.com/docs/cloud-messaging/server#firebase-admin-sdk-for-fcm)
 
-5. Add firebase messaging service worker by creating `firebase-messaging-sw.js` file under `public` folder
-
-```js
-// public/firebase-messaging-sw.js
-
-importScripts(
-  "https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"
-);
-importScripts(
-  "https://www.gstatic.com/firebasejs/9.19.1/firebase-messaging-compat.js"
-);
-
-const firebaseConfig = {
-  // Paste your firebase project configuration
-};
-
-const app = firebase.initializeApp(firebaseConfig);
-
-const messaging = firebase.messaging();
-
-messaging.onBackgroundMessage((payload) => {
-  self.registration.showNotification(
-    payload.notification.title,
-    payload.notification
-  );
-});
-```
 
 That's it! You can now use Nuxt FCM in your Nuxt app ✨
 
