@@ -74,6 +74,11 @@ export default defineNuxtModule<ModuleOptions>({
       handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
     });
 
+    addServerHandler({
+      route: "/firebase-messaging-sw.js",
+      handler: resolve(runtimeDir, "server/routes/firebase-messaging-sw.get"),
+    });
+
     nuxt.hook("nitro:config", (nitroConfig) => {
       nitroConfig.alias = nitroConfig.alias || {};
 
