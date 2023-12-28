@@ -53,21 +53,23 @@ export default defineNuxtModule<ModuleOptions>({
 
     addImportsDir(resolve(runtimeDir, "composables"));
 
-    addServerHandler({
-      route: "/api/fcm/topic/send",
-      handler: resolve(runtimeDir, "server/api/fcm/topic/send.post"),
-    });
+    if (options.serviceAccount) {
+      addServerHandler({
+        route: "/api/fcm/topic/send",
+        handler: resolve(runtimeDir, "server/api/fcm/topic/send.post"),
+      });
 
-    addServerHandler({
-      route: "/api/fcm/topic/subscribe",
-      handler: resolve(runtimeDir, "server/api/fcm/topic/subscribe.post"),
-    });
+      addServerHandler({
+        route: "/api/fcm/topic/subscribe",
+        handler: resolve(runtimeDir, "server/api/fcm/topic/subscribe.post"),
+      });
 
-    addServerHandler({
-      route: "/api/fcm/topic/unsubscribe",
-      handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
-    });
-
+      addServerHandler({
+        route: "/api/fcm/topic/unsubscribe",
+        handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
+      });
+    }
+    
     addServerHandler({
       route: "/firebase-messaging-sw.js",
       handler: resolve(runtimeDir, "server/routes/firebase-messaging-sw.get"),
