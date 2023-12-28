@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v0.2.8
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.7...v0.2.8)
+
+### 🔥 Performance
+
+- Avoid endpoints registration if serviceAccount is not set ([0508ae8](https://github.com/becem-gharbi/nuxt-fcm/commit/0508ae8))
+
+### 💅 Refactors
+
+- Remove serviceAccount not set warning ([a3735f3](https://github.com/becem-gharbi/nuxt-fcm/commit/a3735f3))
+- No significant change ([5817ffe](https://github.com/becem-gharbi/nuxt-fcm/commit/5817ffe))
+
+### 🏡 Chore
+
+- **deps-dev:** Bump postcss from 8.4.28 to 8.4.31 ([dc66737](https://github.com/becem-gharbi/nuxt-fcm/commit/dc66737))
+- **deps-dev:** Bump undici from 5.23.0 to 5.27.0 ([75a56ed](https://github.com/becem-gharbi/nuxt-fcm/commit/75a56ed))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+
 ## v0.2.7
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.6...v0.2.7)
