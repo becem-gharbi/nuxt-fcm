@@ -1,3 +1,3 @@
 <template>
-    <FcmTest />
+  <FcmTest />
 </template>

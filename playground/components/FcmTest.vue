@@ -1,18 +1,25 @@
 <template>
-    <div>
-        <h2>Registration token</h2>
-        <p>{{ registrationToken }}</p>
+  <div>
+    <h2>Registration token</h2>
+    <p>{{ registrationToken }}</p>
 
-        <h2 v-if="message">New message</h2>
-        <p>{{ message }}</p>
+    <h2 v-if="message">
+      New message
+    </h2>
+    <p>{{ message }}</p>
 
-        <button @click="() => subscribe({ topic })">Subscribe</button>
+    <button @click="() => subscribe({ topic })">
+      Subscribe
+    </button>
 
-        <button @click="() => unsubscribe({ topic })">Unsubscribe</button>
+    <button @click="() => unsubscribe({ topic })">
+      Unsubscribe
+    </button>
 
-        <button @click="sendMessage">Send</button>
-
-    </div>
+    <button @click="sendMessage">
+      Send
+    </button>
+  </div>
 </template>
   
 <script setup>

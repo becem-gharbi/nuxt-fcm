@@ -1,8 +1,9 @@
-import { defineEventHandler } from "#imports";
+import { defineEventHandler, useRuntimeConfig } from "#imports";
 import { setResponseHeader } from "h3";
-import { publicConfig } from "#fcm";
 
 export default defineEventHandler((event) => {
+  const publicConfig = useRuntimeConfig().public.fcm
+
   setResponseHeader(event, "Content-Type", "text/javascript");
 
   const firebaseConfigString = JSON.stringify(publicConfig.firebaseConfig);

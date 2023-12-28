@@ -2,7 +2,11 @@ import { ZodError } from "zod";
 import { createError, H3Error } from "h3";
 
 export function handleError(error: any) {
-  const h3Error = new H3Error();
+  if (process.dev) {
+    console.error(error);
+  }
+
+  const h3Error = new H3Error("server-error");
 
   if (error instanceof ZodError) {
     h3Error.message = error.issues[0].path + " | " + error.issues[0].message;
@@ -10,9 +14,6 @@ export function handleError(error: any) {
   } else if (error.message === "unauthorized") {
     h3Error.message = "unauthorized";
     h3Error.statusCode = 401;
-  } else {
-    h3Error.message = error.message;
-    h3Error.statusCode = 500;
   }
 
   throw createError(h3Error);

@@ -1,12 +1,11 @@
-import { initializeApp, cert, ServiceAccount } from "firebase-admin/app";
-import { privateConfig } from "./config";
-
-const serviceAccount = privateConfig.serviceAccount as ServiceAccount;
-
-const app =
-  serviceAccount &&
-  initializeApp({
-    credential: cert(serviceAccount),
+import { initializeApp, cert } from "firebase-admin/app";
+import { useRuntimeConfig } from '#imports'
+ 
+const privateConfig = useRuntimeConfig().fcm;
+  
+const app = privateConfig.serviceAccount && initializeApp({
+  //@ts-ignore
+    credential: cert(privateConfig.serviceAccount),
   });
 
 export { app };

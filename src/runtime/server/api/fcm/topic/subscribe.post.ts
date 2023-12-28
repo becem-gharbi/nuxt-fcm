@@ -1,5 +1,5 @@
 import { defineEventHandler } from "#imports";
-import { app, handleError, checkPermission } from "#fcm";
+import { app, handleError, checkPermission } from "../../../utils";
 import { getMessaging } from "firebase-admin/messaging";
 import { readBody } from "h3";
 import { z } from "zod";
@@ -19,17 +19,7 @@ export default defineEventHandler(async (event) => {
 
     schema.parse({ topic, token });
 
-    if (!app) {
-      throw new Error(
-        "App server not initialized, make sure to set service Account"
-      );
-    }
-
-    const messaging = getMessaging(app);
-
-    const res = await messaging.subscribeToTopic(token, topic);
-
-    return res;
+    return getMessaging(app).subscribeToTopic(token, topic);
   } catch (error) {
     handleError(error);
   }

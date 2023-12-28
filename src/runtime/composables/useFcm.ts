@@ -1,8 +1,11 @@
-import { MessagePayload, getToken as _getToken } from "firebase/messaging";
+import {
+  getToken as _getToken,
+  onMessage as _onMessage,
+} from "firebase/messaging";
 import { useNuxtApp } from "#imports";
-import { onMessage as _onMessage } from "firebase/messaging";
+import type { MessagePayload } from "firebase/messaging";
 
-export default function () {
+export function useFcm() {
   const { $fcm } = useNuxtApp();
 
   async function getToken(): Promise<string> {

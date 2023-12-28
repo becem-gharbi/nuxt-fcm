@@ -3,11 +3,9 @@ import type {
   MessagingTopicResponse,
   MessagingTopicManagementResponse,
 } from "firebase-admin/messaging";
-import useFcm from "./useFcm";
+import { useFcm } from "./useFcm";
 
 export default function () {
-  const { getToken } = useFcm();
-
   function send(args: {
     topic: string;
     payload: MessagingPayload;
@@ -20,7 +18,7 @@ export default function () {
         payload: args.payload,
       },
       headers: {
-        Authorization: args.authorization || "",
+        Authorization: args.authorization ?? "",
       },
     });
   }
@@ -29,7 +27,7 @@ export default function () {
     topic: string;
     authorization?: string;
   }): Promise<MessagingTopicManagementResponse> {
-    const token = await getToken();
+    const token = await useFcm().getToken();
 
     return $fetch<MessagingTopicManagementResponse>(
       "/api/fcm/topic/subscribe",
@@ -40,7 +38,7 @@ export default function () {
           topic: args.topic,
         },
         headers: {
-          Authorization: args.authorization || "",
+          Authorization: args.authorization ?? "",
         },
       }
     );
@@ -50,7 +48,7 @@ export default function () {
     topic: string;
     authorization?: string;
   }): Promise<MessagingTopicManagementResponse> {
-    const token = await getToken();
+    const token = await useFcm().getToken();
 
     return $fetch<MessagingTopicManagementResponse>(
       "/api/fcm/topic/unsubscribe",
@@ -61,7 +59,7 @@ export default function () {
           topic: args.topic,
         },
         headers: {
-          Authorization: args.authorization || "",
+          Authorization: args.authorization ?? "",
         },
       }
     );

@@ -5,7 +5,7 @@ export function setPermissions(
   event: H3Event,
   permissions: FcmContext["permissions"]
 ) {
-  event.context.fcm = event.context.fcm || {};
+  event.context.fcm ||= {};
   event.context.fcm.permissions = permissions;
 }
 

@@ -1,14 +1,9 @@
-import { defineNuxtPlugin, useRuntimeConfig } from "#app";
+import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken } from "firebase/messaging";
-import { Fcm } from "./types";
 
 export default defineNuxtPlugin(() => {
   const publicConfig = useRuntimeConfig().public.fcm;
-
-  if (!publicConfig.firebaseConfig || !publicConfig.vapidKey) {
-    return;
-  }
 
   const app = initializeApp(publicConfig.firebaseConfig);
 
@@ -16,13 +11,9 @@ export default defineNuxtPlugin(() => {
 
   getToken(messaging).catch(console.warn);
 
-  const fcm: Fcm = {
-    messaging,
-  };
-
   return {
     provide: {
-      fcm,
+      fcm: { messaging },
     },
   };
 });

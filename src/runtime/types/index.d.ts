@@ -1,12 +1,14 @@
 import type { Messaging } from "firebase/messaging";
+import type { ServiceAccount } from "firebase-admin/app";
+import type { FirebaseOptions } from "firebase/app";
 
 export type PublicConfig = {
-  firebaseConfig: Record<string, string>;
+  firebaseConfig: FirebaseOptions;
   vapidKey: string;
 };
 
 export type PrivateConfig = {
-  serviceAccount?: Record<string, string>;
+  serviceAccount?: ServiceAccount;
 };
 
 export type Fcm = {

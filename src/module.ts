@@ -10,7 +10,6 @@ import {
 } from "@nuxt/kit";
 import { name, version } from "../package.json";
 import { defu } from "defu";
-
 import type { PublicConfig, PrivateConfig } from "./runtime/types";
 
 export interface ModuleOptions extends PrivateConfig, PublicConfig {}
@@ -27,11 +26,11 @@ export default defineNuxtModule<ModuleOptions>({
     const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
 
     if (!options.firebaseConfig) {
-      logger.warn(`[${name}] Please make sure to set firebaseConfig`);
+      logger.warn("[nuxt-fcm] Please make sure to set firebaseConfig");
     }
 
     if (!options.vapidKey) {
-      logger.warn(`[${name}] Please make sure to set vapidKey`);
+      logger.warn("[nuxt-fcm] Please make sure to set vapidKey");
     }
 
     nuxt.options.runtimeConfig = defu(nuxt.options.runtimeConfig, {
@@ -49,7 +48,7 @@ export default defineNuxtModule<ModuleOptions>({
       },
     });
 
-    addPlugin(resolve(runtimeDir, "firebase.client"));
+    addPlugin(resolve(runtimeDir, "plugins/firebase.client"));
 
     addImportsDir(resolve(runtimeDir, "composables"));
 
@@ -69,23 +68,20 @@ export default defineNuxtModule<ModuleOptions>({
         handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
       });
     }
-    
+
     addServerHandler({
       route: "/firebase-messaging-sw.js",
       handler: resolve(runtimeDir, "server/routes/firebase-messaging-sw.get"),
     });
 
-    nuxt.hook("nitro:config", (nitroConfig) => {
-      nitroConfig.alias = nitroConfig.alias || {};
-
-      nitroConfig.externals = defu(
-        typeof nitroConfig.externals === "object" ? nitroConfig.externals : {},
-        {
-          inline: [resolve(runtimeDir)],
-        }
-      );
-      nitroConfig.alias["#fcm"] = resolve(runtimeDir, "server/utils");
-    });
+    nuxt.options.nitro = defu(
+      {
+        alias: {
+          "#fcm": resolve("./runtime/server/utils"),
+        },
+      },
+      nuxt.options.nitro
+    );
 
     addTemplate({
       filename: "types/fcm.d.ts",
