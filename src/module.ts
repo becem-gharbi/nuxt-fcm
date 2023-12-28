@@ -34,12 +34,6 @@ export default defineNuxtModule<ModuleOptions>({
       logger.warn(`[${name}] Please make sure to set vapidKey`);
     }
 
-    if (!options.serviceAccount) {
-      logger.info(
-        `[${name}] Please make sure to set serviceAccount if your using app server`
-      );
-    }
-
     nuxt.options.runtimeConfig = defu(nuxt.options.runtimeConfig, {
       app: {},
 

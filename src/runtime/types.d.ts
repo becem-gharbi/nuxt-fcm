@@ -38,5 +38,3 @@ declare module "vue" {
     $fcm: Fcm;
   }
 }
-
-export {};
