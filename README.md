@@ -5,7 +5,7 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-A Nuxt 3 module for integrating Firebase Cloud messaging. This module is based on Firebase JS SDK for client app and Firebase Admin SDK for app server
+A Nuxt 3 module for integrating Firebase Cloud messaging. This module is based on Firebase JS SDK on client-side and Firebase Admin SDK on server-side.
 
 ## Features
 
@@ -28,20 +28,17 @@ yarn add --dev @bg-dev/nuxt-fcm
 
 ```js
 export default defineNuxtConfig({
-  modules: ["@bg-dev/nuxt-fcm"],
-
-  fcm: {},
+  modules: ["@bg-dev/nuxt-fcm"]
 });
 ```
 
 3. Set `fcm` config object
 
-- `firebaseConfig` Firebase project configuration
-- `vapidKey` Public server key provided to push services [docs](https://firebase.google.com/docs/cloud-messaging/js/client?authuser=0#configure_web_credentials_with)
-- `serviceAccount` Firebase admin credentials [docs](https://firebase.google.com/docs/admin/setup?authuser=0#initialize_the_sdk_in_non-google_environments). You can ignore this property in case the app server is not needed
+- `firebaseConfig` Firebase project configuration.
+- `vapidKey` Public server key provided to push services [docs](https://firebase.google.com/docs/cloud-messaging/js/client?authuser=0#configure_web_credentials_with).
+- `serviceAccount` Firebase admin credentials [docs](https://firebase.google.com/docs/admin/setup?authuser=0#initialize_the_sdk_in_non-google_environments). You can ignore this property in case the app server is not needed.
 
-4. If you are using app server, make sure to enable `Cloud messaging API` [docs](https://firebase.google.com/docs/cloud-messaging/server#firebase-admin-sdk-for-fcm)
-
+4. If you are using app server, make sure to enable `Cloud messaging API` [docs](https://firebase.google.com/docs/cloud-messaging/server#firebase-admin-sdk-for-fcm).
 
 That's it! You can now use Nuxt FCM in your Nuxt app ✨
 
@@ -72,8 +69,6 @@ export default defineEventHandler((event) => {
 When a push message is received and the page is open (in foreground), the message is passed to the page and an onMessage() event is dispatched with the payload of the push message.
 
 ```js
-// Note that useFcm() is usable client side only
-
 const { onMessage } = useFcm();
 
 onMessage(console.log);
@@ -81,7 +76,7 @@ onMessage(console.log);
 
 ### Add other firebase services
 
-You can integrate other Firebase services such as Google Analytics to provide insights into user behavior and engagement stats
+You can integrate other Firebase services such as Google Analytics to provide insights into user behavior and engagement stats.
 
 ```js
 // nuxt.config.ts
