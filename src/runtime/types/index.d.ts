@@ -12,7 +12,7 @@ export type PrivateConfig = {
 };
 
 export type Fcm = {
-  messaging: Messaging;
+  messaging: Messaging | null;
 };
 
 export type Entity = "topic";
