@@ -9,11 +9,11 @@ export function useFcm() {
   const { $fcm } = useNuxtApp();
 
   async function getToken(): Promise<string> {
-    return $fcm && $fcm.messaging && _getToken($fcm.messaging).catch(() => "");
+    return $fcm?.messaging && _getToken($fcm.messaging).catch(console.warn);
   }
 
   function onMessage(cb: (payload: MessagePayload) => void) {
-    $fcm && $fcm.messaging && _onMessage($fcm.messaging, cb);
+    $fcm?.messaging && _onMessage($fcm.messaging, cb);
   }
 
   return { getToken, onMessage };
