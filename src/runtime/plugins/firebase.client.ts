@@ -8,7 +8,7 @@ export default defineNuxtPlugin(() => {
 
   const app = initializeApp(publicConfig.firebaseConfig)
 
-  const messaging = navigator.serviceWorker && getMessaging(app)
+  const messaging = navigator?.serviceWorker && getMessaging(app)
 
   /* eslint-disable no-console */
   getToken(messaging).catch(console.warn)
