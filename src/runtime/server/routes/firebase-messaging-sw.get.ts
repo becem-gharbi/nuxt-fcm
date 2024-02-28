@@ -1,8 +1,9 @@
-import { defineEventHandler, useRuntimeConfig } from "#imports";
-import { setResponseHeader } from "h3";
+import {useRuntimeConfig } from "#imports";
+import { setResponseHeader, defineEventHandler } from "h3";
+import type { PublicConfig} from '../../types'
 
 export default defineEventHandler((event) => {
-  const publicConfig = useRuntimeConfig().public.fcm
+  const publicConfig = useRuntimeConfig().public.fcm as PublicConfig
 
   setResponseHeader(event, "Content-Type", "text/javascript");
 

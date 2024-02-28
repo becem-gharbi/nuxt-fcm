@@ -1,9 +1,10 @@
 import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken } from "firebase/messaging";
+import type { PublicConfig } from '../types'
 
 export default defineNuxtPlugin(() => {
-  const publicConfig = useRuntimeConfig().public.fcm;
+  const publicConfig = useRuntimeConfig().public.fcm as PublicConfig;
 
   const app = initializeApp(publicConfig.firebaseConfig);
 

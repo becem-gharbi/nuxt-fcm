@@ -1,5 +1,5 @@
 import { setPermissions } from "#fcm";
-import { defineEventHandler } from "#imports";
+import { defineEventHandler } from "h3";
 
 export default defineEventHandler((event) => {
   setPermissions(event, {

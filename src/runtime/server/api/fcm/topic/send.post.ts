@@ -1,4 +1,4 @@
-import { defineEventHandler } from "#imports";
+import { defineEventHandler } from "h3";
 import { app, handleError, checkPermission } from "../../../utils";
 import { getMessaging } from "firebase-admin/messaging";
 import { readBody } from "h3";
@@ -20,9 +20,7 @@ export default defineEventHandler(async (event) => {
 
     schema.parse({ topic });
 
-    const messaging = getMessaging(app);
-
-    return messaging.sendToTopic(topic, payload);
+    return getMessaging(app).sendToTopic(topic, payload);
   } catch (error) {
     handleError(error);
   }

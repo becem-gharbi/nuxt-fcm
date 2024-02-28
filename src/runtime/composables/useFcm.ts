@@ -8,7 +8,7 @@ import type { MessagePayload } from "firebase/messaging";
 export function useFcm() {
   const { $fcm } = useNuxtApp();
 
-  async function getToken(): Promise<string> {
+  async function getToken(): Promise<string | undefined | void> {
     return $fcm?.messaging && _getToken($fcm.messaging).catch(console.warn);
   }
 
