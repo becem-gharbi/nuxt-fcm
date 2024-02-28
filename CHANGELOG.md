@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v0.2.9
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.8...v0.2.9)
+
+### 🩹 Fixes
+
+- Undefined navigator.serviceWorker in incognito mode ([#12](https://github.com/becem-gharbi/nuxt-fcm/pull/12))
+
+### 💅 Refactors
+
+- Handle potential cases where messaging instance undefined ([cdd06d2](https://github.com/becem-gharbi/nuxt-fcm/commit/cdd06d2))
+- Check navigator before `getMessaging` ([3474b09](https://github.com/becem-gharbi/nuxt-fcm/commit/3474b09))
+
+### 🌊 Types
+
+- Solve typecheck issues ([088fb66](https://github.com/becem-gharbi/nuxt-fcm/commit/088fb66))
+
+### 🏡 Chore
+
+- Use `@nuxtjs/eslint-config-typescript` for linting ([04298eb](https://github.com/becem-gharbi/nuxt-fcm/commit/04298eb))
+
+### ❤️ Contributors
+
+- Becem-gharbi ([@becem-gharbi](http://github.com/becem-gharbi))
+- Marc
+
 ## v0.2.8
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.7...v0.2.8)
