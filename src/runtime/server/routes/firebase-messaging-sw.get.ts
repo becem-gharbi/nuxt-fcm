@@ -1,13 +1,13 @@
-import {useRuntimeConfig } from "#imports";
-import { setResponseHeader, defineEventHandler } from "h3";
-import type { PublicConfig} from '../../types'
+import { setResponseHeader, defineEventHandler } from 'h3'
+import type { PublicConfig } from '../../types'
+import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler((event) => {
   const publicConfig = useRuntimeConfig().public.fcm as PublicConfig
 
-  setResponseHeader(event, "Content-Type", "text/javascript");
+  setResponseHeader(event, 'Content-Type', 'text/javascript')
 
-  const firebaseConfigString = JSON.stringify(publicConfig.firebaseConfig);
+  const firebaseConfigString = JSON.stringify(publicConfig.firebaseConfig)
 
   return `
     importScripts("https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js");
@@ -26,5 +26,5 @@ export default defineEventHandler((event) => {
         payload.notification.title,
         payload.notification);
     });
-  `;
-});
+  `
+})

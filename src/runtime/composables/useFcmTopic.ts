@@ -1,69 +1,69 @@
 import type {
   MessagingPayload,
   MessagingTopicResponse,
-  MessagingTopicManagementResponse,
-} from "firebase-admin/messaging";
-import { useFcm } from "./useFcm";
+  MessagingTopicManagementResponse
+} from 'firebase-admin/messaging'
+import { useFcm } from './useFcm'
 
 export default function () {
-  function send(args: {
+  function send (args: {
     topic: string;
     payload: MessagingPayload;
     authorization?: string;
   }): Promise<MessagingTopicResponse> {
-    return $fetch<MessagingTopicResponse>("/api/fcm/topic/send", {
-      method: "POST",
+    return $fetch<MessagingTopicResponse>('/api/fcm/topic/send', {
+      method: 'POST',
       body: {
         topic: args.topic,
-        payload: args.payload,
+        payload: args.payload
       },
       headers: {
-        Authorization: args.authorization ?? "",
-      },
-    });
+        Authorization: args.authorization ?? ''
+      }
+    })
   }
 
-  async function subscribe(args: {
+  async function subscribe (args: {
     topic: string;
     authorization?: string;
   }): Promise<MessagingTopicManagementResponse> {
-    const token = await useFcm().getToken();
+    const token = await useFcm().getToken()
 
     return $fetch<MessagingTopicManagementResponse>(
-      "/api/fcm/topic/subscribe",
+      '/api/fcm/topic/subscribe',
       {
-        method: "POST",
+        method: 'POST',
         body: {
-          token: token,
-          topic: args.topic,
+          token,
+          topic: args.topic
         },
         headers: {
-          Authorization: args.authorization ?? "",
-        },
+          Authorization: args.authorization ?? ''
+        }
       }
-    );
+    )
   }
 
-  async function unsubscribe(args: {
+  async function unsubscribe (args: {
     topic: string;
     authorization?: string;
   }): Promise<MessagingTopicManagementResponse> {
-    const token = await useFcm().getToken();
+    const token = await useFcm().getToken()
 
     return $fetch<MessagingTopicManagementResponse>(
-      "/api/fcm/topic/unsubscribe",
+      '/api/fcm/topic/unsubscribe',
       {
-        method: "POST",
+        method: 'POST',
         body: {
-          token: token,
-          topic: args.topic,
+          token,
+          topic: args.topic
         },
         headers: {
-          Authorization: args.authorization ?? "",
-        },
+          Authorization: args.authorization ?? ''
+        }
       }
-    );
+    )
   }
 
-  return { send, subscribe, unsubscribe };
+  return { send, subscribe, unsubscribe }
 }

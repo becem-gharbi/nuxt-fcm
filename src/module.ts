@@ -1,4 +1,4 @@
-import { fileURLToPath } from "url";
+import { fileURLToPath } from 'url'
 import {
   defineNuxtModule,
   addPlugin,
@@ -6,11 +6,11 @@ import {
   addServerHandler,
   addTemplate,
   addImportsDir,
-  logger,
-} from "@nuxt/kit";
-import { name, version } from "../package.json";
-import { defu } from "defu";
-import type { PublicConfig, PrivateConfig } from "./runtime/types";
+  logger
+} from '@nuxt/kit'
+import { defu } from 'defu'
+import { name, version } from '../package.json'
+import type { PublicConfig, PrivateConfig } from './runtime/types'
 
 export interface ModuleOptions extends PrivateConfig, PublicConfig {}
 
@@ -18,100 +18,100 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
-    configKey: "fcm",
+    configKey: 'fcm'
   },
 
-  setup(options, nuxt) {
-    const { resolve } = createResolver(import.meta.url);
-    const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
+  setup (options, nuxt) {
+    const { resolve } = createResolver(import.meta.url)
+    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
 
     if (!options.firebaseConfig) {
-      logger.warn("[nuxt-fcm] Please make sure to set firebaseConfig");
+      logger.warn('[nuxt-fcm] Please make sure to set firebaseConfig')
     }
 
     if (!options.vapidKey) {
-      logger.warn("[nuxt-fcm] Please make sure to set vapidKey");
+      logger.warn('[nuxt-fcm] Please make sure to set vapidKey')
     }
 
     nuxt.options.runtimeConfig = defu(nuxt.options.runtimeConfig, {
       app: {},
 
       fcm: {
-        serviceAccount: options.serviceAccount,
+        serviceAccount: options.serviceAccount
       },
 
       public: {
         fcm: {
           firebaseConfig: options.firebaseConfig,
-          vapidKey: options.vapidKey,
-        },
-      },
-    });
+          vapidKey: options.vapidKey
+        }
+      }
+    })
 
-    addPlugin(resolve(runtimeDir, "plugins/firebase.client"));
+    addPlugin(resolve(runtimeDir, 'plugins/firebase.client'))
 
-    addImportsDir(resolve(runtimeDir, "composables"));
+    addImportsDir(resolve(runtimeDir, 'composables'))
 
     if (options.serviceAccount) {
       addServerHandler({
-        route: "/api/fcm/topic/send",
-        handler: resolve(runtimeDir, "server/api/fcm/topic/send.post"),
-      });
+        route: '/api/fcm/topic/send',
+        handler: resolve(runtimeDir, 'server/api/fcm/topic/send.post')
+      })
 
       addServerHandler({
-        route: "/api/fcm/topic/subscribe",
-        handler: resolve(runtimeDir, "server/api/fcm/topic/subscribe.post"),
-      });
+        route: '/api/fcm/topic/subscribe',
+        handler: resolve(runtimeDir, 'server/api/fcm/topic/subscribe.post')
+      })
 
       addServerHandler({
-        route: "/api/fcm/topic/unsubscribe",
-        handler: resolve(runtimeDir, "server/api/fcm/topic/unsubscribe.post"),
-      });
+        route: '/api/fcm/topic/unsubscribe',
+        handler: resolve(runtimeDir, 'server/api/fcm/topic/unsubscribe.post')
+      })
     }
 
     addServerHandler({
-      route: "/firebase-messaging-sw.js",
-      handler: resolve(runtimeDir, "server/routes/firebase-messaging-sw.get"),
-    });
+      route: '/firebase-messaging-sw.js',
+      handler: resolve(runtimeDir, 'server/routes/firebase-messaging-sw.get')
+    })
 
     nuxt.options.nitro = defu(
       {
         alias: {
-          "#fcm": resolve("./runtime/server/utils"),
-        },
+          '#fcm': resolve('./runtime/server/utils')
+        }
       },
       nuxt.options.nitro
-    );
+    )
 
     addTemplate({
-      filename: "types/fcm.d.ts",
+      filename: 'types/fcm.d.ts',
       getContents: () =>
         [
           "declare module '#fcm' {",
           `const app: typeof import('${resolve(
             runtimeDir,
-            "server/utils"
+            'server/utils'
           )}').app`,
           `const handleError: typeof import('${resolve(
             runtimeDir,
-            "server/utils"
+            'server/utils'
           )}').handleError`,
           `const setPermissions: typeof import('${resolve(
             runtimeDir,
-            "server/utils"
+            'server/utils'
           )}').setPermissions`,
           `const checkPermission: typeof import('${resolve(
             runtimeDir,
-            "server/utils"
+            'server/utils'
           )}').checkPermission`,
-          "}",
-        ].join("\n"),
-    });
+          '}'
+        ].join('\n')
+    })
 
-    nuxt.hook("prepare:types", (options) => {
+    nuxt.hook('prepare:types', (options) => {
       options.references.push({
-        path: resolve(nuxt.options.buildDir, "types/fcm.d.ts"),
-      });
-    });
-  },
-});
+        path: resolve(nuxt.options.buildDir, 'types/fcm.d.ts')
+      })
+    })
+  }
+})
