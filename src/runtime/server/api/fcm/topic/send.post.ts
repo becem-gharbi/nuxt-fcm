@@ -9,18 +9,19 @@ export default defineEventHandler(async (event) => {
     checkPermission(event, 'topic', 'send')
 
     const { topic, payload } = await readBody<{
-      topic: string;
-      payload: MessagingPayload;
+      topic: string
+      payload: MessagingPayload
     }>(event)
 
     const schema = z.object({
-      topic: z.string().min(1)
+      topic: z.string().min(1),
     })
 
     schema.parse({ topic })
 
     return getMessaging(app).sendToTopic(topic, payload)
-  } catch (error) {
+  }
+  catch (error) {
     handleError(error)
   }
 })

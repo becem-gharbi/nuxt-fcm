@@ -1,31 +1,31 @@
 import type {
   MessagingPayload,
   MessagingTopicResponse,
-  MessagingTopicManagementResponse
+  MessagingTopicManagementResponse,
 } from 'firebase-admin/messaging'
 import { useFcm } from './useFcm'
 
 export default function () {
-  function send (args: {
-    topic: string;
-    payload: MessagingPayload;
-    authorization?: string;
+  function send(args: {
+    topic: string
+    payload: MessagingPayload
+    authorization?: string
   }): Promise<MessagingTopicResponse> {
     return $fetch<MessagingTopicResponse>('/api/fcm/topic/send', {
       method: 'POST',
       body: {
         topic: args.topic,
-        payload: args.payload
+        payload: args.payload,
       },
       headers: {
-        Authorization: args.authorization ?? ''
-      }
+        Authorization: args.authorization ?? '',
+      },
     })
   }
 
-  async function subscribe (args: {
-    topic: string;
-    authorization?: string;
+  async function subscribe(args: {
+    topic: string
+    authorization?: string
   }): Promise<MessagingTopicManagementResponse> {
     const token = await useFcm().getToken()
 
@@ -35,18 +35,18 @@ export default function () {
         method: 'POST',
         body: {
           token,
-          topic: args.topic
+          topic: args.topic,
         },
         headers: {
-          Authorization: args.authorization ?? ''
-        }
-      }
+          Authorization: args.authorization ?? '',
+        },
+      },
     )
   }
 
-  async function unsubscribe (args: {
-    topic: string;
-    authorization?: string;
+  async function unsubscribe(args: {
+    topic: string
+    authorization?: string
   }): Promise<MessagingTopicManagementResponse> {
     const token = await useFcm().getToken()
 
@@ -56,12 +56,12 @@ export default function () {
         method: 'POST',
         body: {
           token,
-          topic: args.topic
+          topic: args.topic,
         },
         headers: {
-          Authorization: args.authorization ?? ''
-        }
-      }
+          Authorization: args.authorization ?? '',
+        },
+      },
     )
   }
 

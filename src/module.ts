@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 import {
   defineNuxtModule,
   addPlugin,
@@ -6,7 +6,7 @@ import {
   addServerHandler,
   addTemplate,
   addImportsDir,
-  logger
+  logger,
 } from '@nuxt/kit'
 import { defu } from 'defu'
 import { name, version } from '../package.json'
@@ -18,10 +18,10 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
-    configKey: 'fcm'
+    configKey: 'fcm',
   },
 
-  setup (options, nuxt) {
+  setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
 
@@ -37,15 +37,15 @@ export default defineNuxtModule<ModuleOptions>({
       app: {},
 
       fcm: {
-        serviceAccount: options.serviceAccount
+        serviceAccount: options.serviceAccount,
       },
 
       public: {
         fcm: {
           firebaseConfig: options.firebaseConfig,
-          vapidKey: options.vapidKey
-        }
-      }
+          vapidKey: options.vapidKey,
+        },
+      },
     })
 
     addPlugin(resolve(runtimeDir, 'plugins/firebase.client'))
@@ -55,63 +55,63 @@ export default defineNuxtModule<ModuleOptions>({
     if (options.serviceAccount) {
       addServerHandler({
         route: '/api/fcm/topic/send',
-        handler: resolve(runtimeDir, 'server/api/fcm/topic/send.post')
+        handler: resolve(runtimeDir, 'server/api/fcm/topic/send.post'),
       })
 
       addServerHandler({
         route: '/api/fcm/topic/subscribe',
-        handler: resolve(runtimeDir, 'server/api/fcm/topic/subscribe.post')
+        handler: resolve(runtimeDir, 'server/api/fcm/topic/subscribe.post'),
       })
 
       addServerHandler({
         route: '/api/fcm/topic/unsubscribe',
-        handler: resolve(runtimeDir, 'server/api/fcm/topic/unsubscribe.post')
+        handler: resolve(runtimeDir, 'server/api/fcm/topic/unsubscribe.post'),
       })
     }
 
     addServerHandler({
       route: '/firebase-messaging-sw.js',
-      handler: resolve(runtimeDir, 'server/routes/firebase-messaging-sw.get')
+      handler: resolve(runtimeDir, 'server/routes/firebase-messaging-sw.get'),
     })
 
     nuxt.options.nitro = defu(
       {
         alias: {
-          '#fcm': resolve('./runtime/server/utils')
-        }
+          '#fcm': resolve('./runtime/server/utils'),
+        },
       },
-      nuxt.options.nitro
+      nuxt.options.nitro,
     )
 
     addTemplate({
       filename: 'types/fcm.d.ts',
       getContents: () =>
         [
-          "declare module '#fcm' {",
+          'declare module \'#fcm\' {',
           `const app: typeof import('${resolve(
             runtimeDir,
-            'server/utils'
+            'server/utils',
           )}').app`,
           `const handleError: typeof import('${resolve(
             runtimeDir,
-            'server/utils'
+            'server/utils',
           )}').handleError`,
           `const setPermissions: typeof import('${resolve(
             runtimeDir,
-            'server/utils'
+            'server/utils',
           )}').setPermissions`,
           `const checkPermission: typeof import('${resolve(
             runtimeDir,
-            'server/utils'
+            'server/utils',
           )}').checkPermission`,
-          '}'
-        ].join('\n')
+          '}',
+        ].join('\n'),
     })
 
     nuxt.hook('prepare:types', (options) => {
       options.references.push({
-        path: resolve(nuxt.options.buildDir, 'types/fcm.d.ts')
+        path: resolve(nuxt.options.buildDir, 'types/fcm.d.ts'),
       })
     })
-  }
+  },
 })

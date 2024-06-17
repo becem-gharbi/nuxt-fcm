@@ -6,7 +6,7 @@ export default defineEventHandler((event) => {
     topic: {
       send: true,
       subscribe: true,
-      unsubscribe: true
-    }
+      unsubscribe: true,
+    },
   })
 })

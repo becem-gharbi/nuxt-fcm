@@ -21,13 +21,13 @@
     </button>
   </div>
 </template>
-  
+
 <script setup>
-import { ref, useFcmTopic, useFcm } from '#imports';
+import { ref, useFcmTopic, useFcm } from '#imports'
 
-const message = ref("")
+const message = ref('')
 
-const topic = ref("topic_2")
+const topic = ref('topic_2')
 
 const { send, subscribe, unsubscribe } = useFcmTopic()
 
@@ -35,23 +35,21 @@ const { onMessage, getToken } = useFcm()
 
 const registrationToken = await getToken()
 
-onMessage((payload) => message.value = payload)
+onMessage(payload => message.value = payload)
 
 async function sendMessage() {
-    send({
-        topic:
+  send({
+    topic:
             topic.value,
-        payload: {
-            notification: {
-                title: "From client"
-            },
-            data: {
-                "ok": "true"
-            }
-        },
-        authorization: "Bearer 123"
-    })
+    payload: {
+      notification: {
+        title: 'From client',
+      },
+      data: {
+        ok: 'true',
+      },
+    },
+    authorization: 'Bearer 123',
+  })
 }
-
 </script>
-  

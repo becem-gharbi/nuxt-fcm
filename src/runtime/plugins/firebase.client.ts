@@ -10,12 +10,11 @@ export default defineNuxtPlugin(() => {
 
   const messaging = navigator?.serviceWorker && getMessaging(app)
 
-  /* eslint-disable no-console */
   getToken(messaging).catch(console.warn)
 
   return {
     provide: {
-      fcm: { messaging }
-    }
+      fcm: { messaging },
+    },
   }
 })

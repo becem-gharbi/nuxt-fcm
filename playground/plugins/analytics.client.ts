@@ -8,7 +8,7 @@ export default defineNuxtPlugin(() => {
 
   return {
     provide: {
-      analytics
-    }
+      analytics,
+    },
   }
 })
