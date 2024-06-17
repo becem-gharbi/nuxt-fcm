@@ -5,4 +5,11 @@ export default defineNuxtConfig({
     vapidKey: process.env.FCM_VAPID_KEY,
     serviceAccount: JSON.parse(process.env.FCM_SERVICE_ACCOUNT!),
   },
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        module: 'ESNext',
+      },
+    },
+  },
 })
