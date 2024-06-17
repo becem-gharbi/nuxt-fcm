@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.2.10
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.9...v0.2.10)
+
+### 💅 Refactors
+
+- Change server validation errors ([2bc3ae8](https://github.com/becem-gharbi/nuxt-fcm/commit/2bc3ae8))
+
+### 🏡 Chore
+
+- **sw:** Sync firebase version ([d764035](https://github.com/becem-gharbi/nuxt-fcm/commit/d764035))
+- **lint:** Migrate to `@nuxt/eslint-config` ([868800b](https://github.com/becem-gharbi/nuxt-fcm/commit/868800b))
+- **playground:** Fix `import.meta` not allowed ([e33040a](https://github.com/becem-gharbi/nuxt-fcm/commit/e33040a))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+
 ## v0.2.9
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.8...v0.2.9)
