@@ -92,10 +92,6 @@ export default defineNuxtModule<ModuleOptions>({
             runtimeDir,
             'server/utils',
           )}').app`,
-          `const handleError: typeof import('${resolve(
-            runtimeDir,
-            'server/utils',
-          )}').handleError`,
           `const setPermissions: typeof import('${resolve(
             runtimeDir,
             'server/utils',

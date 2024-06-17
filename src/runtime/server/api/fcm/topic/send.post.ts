@@ -1,27 +1,19 @@
-import { defineEventHandler, readBody } from 'h3'
+import { defineEventHandler, readBody, createError } from 'h3'
 import { getMessaging } from 'firebase-admin/messaging'
-import { z } from 'zod'
 import type { MessagingPayload } from 'firebase-admin/messaging'
-import { app, handleError, checkPermission } from '../../../utils'
+import { app, checkPermission } from '../../../utils'
 
 export default defineEventHandler(async (event) => {
-  try {
-    checkPermission(event, 'topic', 'send')
+  checkPermission(event, 'topic', 'send')
 
-    const { topic, payload } = await readBody<{
-      topic: string
-      payload: MessagingPayload
-    }>(event)
+  const { topic, payload } = await readBody<{
+    topic: string
+    payload: MessagingPayload
+  }>(event)
 
-    const schema = z.object({
-      topic: z.string().min(1),
-    })
-
-    schema.parse({ topic })
-
-    return getMessaging(app).sendToTopic(topic, payload)
+  if (!topic) {
+    throw createError({ message: 'Topic is required', statusCode: 400 })
   }
-  catch (error) {
-    handleError(error)
-  }
+
+  return getMessaging(app).sendToTopic(topic, payload)
 })

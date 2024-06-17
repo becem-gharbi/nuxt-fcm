@@ -1,4 +1,4 @@
-import type { H3Event } from 'h3'
+import { createError, type H3Event } from 'h3'
 import type { FcmContext, Entity, Permission } from '../../types'
 
 export function setPermissions(
@@ -14,10 +14,9 @@ export function checkPermission(
   entity: Entity,
   permission: Permission,
 ) {
-  if (
-    !event.context.fcm?.permissions[entity]
-    || !event.context.fcm?.permissions[entity][permission]
-  ) {
-    throw new Error('unauthorized')
+  const entityPermission = event.context.fcm?.permissions[entity]
+
+  if (!entityPermission || !entityPermission[permission]) {
+    throw createError({ message: 'Unauthorized', statusCode: 401 })
   }
 }
