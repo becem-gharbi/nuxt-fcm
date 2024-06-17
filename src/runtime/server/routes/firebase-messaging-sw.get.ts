@@ -10,8 +10,8 @@ export default defineEventHandler((event) => {
   const firebaseConfigString = JSON.stringify(publicConfig.firebaseConfig)
 
   return `
-    importScripts("https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js");
-    importScripts("https://www.gstatic.com/firebasejs/9.19.1/firebase-messaging-compat.js");
+    importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js");
+    importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js");
     
     const firebaseConfig = ${firebaseConfigString};
 
