@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v0.2.11
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.10...v0.2.11)
+
+### 🚀 Enhancements
+
+- Allow extending service worker ([1215541](https://github.com/becem-gharbi/nuxt-fcm/commit/1215541))
+
+### 🩹 Fixes
+
+- Avoid duplicate background notifications ([f7566af](https://github.com/becem-gharbi/nuxt-fcm/commit/f7566af))
+
+### 📖 Documentation
+
+- Update README ([9dcd2b5](https://github.com/becem-gharbi/nuxt-fcm/commit/9dcd2b5))
+
+### 🏡 Chore
+
+- Allow compatibility with `nuxt` v4 ([1ab8462](https://github.com/becem-gharbi/nuxt-fcm/commit/1ab8462))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+
 ## v0.2.10
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.9...v0.2.10)
