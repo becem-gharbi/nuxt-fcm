@@ -47,7 +47,7 @@
     "eslint": "^8",
     "firebase": "^10.12.2",
     "firebase-admin": "^12.1.1",
-    "nuxt": "^3.12.2"
+    "nuxt": "^3.12.4"
   },
   "peerDependencies": {
     "firebase": "^10.12.2",
