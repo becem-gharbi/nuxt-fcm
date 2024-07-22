@@ -19,6 +19,9 @@ export default defineNuxtModule<ModuleOptions>({
     name,
     version,
     configKey: 'fcm',
+    compatibility: {
+      nuxt: '>=3.0.0',
+    },
   },
 
   setup(options, nuxt) {
