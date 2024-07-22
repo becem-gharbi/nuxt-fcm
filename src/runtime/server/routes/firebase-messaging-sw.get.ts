@@ -1,9 +1,10 @@
 import { setResponseHeader, defineEventHandler } from 'h3'
-import type { PublicConfig } from '../../types'
+import type { PublicConfig, PrivateConfig } from '../../types'
 import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler((event) => {
   const publicConfig = useRuntimeConfig().public.fcm as PublicConfig
+  const privateConfig = useRuntimeConfig().fcm as PrivateConfig
 
   setResponseHeader(event, 'Content-Type', 'text/javascript')
 
@@ -19,8 +20,6 @@ export default defineEventHandler((event) => {
 
     const messaging = firebase.messaging();
 
-    messaging.onBackgroundMessage((payload) => {
-        console.log("[firebase-messaging-sw.js] Received background message ", payload);
-    });
+    ${privateConfig.serviceWorkerScript?.trim() ?? ''}
   `
 })

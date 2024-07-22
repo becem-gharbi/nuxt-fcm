@@ -41,6 +41,7 @@ export default defineNuxtModule<ModuleOptions>({
 
       fcm: {
         serviceAccount: options.serviceAccount,
+        serviceWorkerScript: options.serviceWorkerScript,
       },
 
       public: {

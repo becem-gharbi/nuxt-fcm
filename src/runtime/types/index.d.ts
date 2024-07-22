@@ -9,6 +9,7 @@ export type PublicConfig = {
 
 export type PrivateConfig = {
   serviceAccount?: ServiceAccount
+  serviceWorkerScript?: string
 }
 
 export type Fcm = {
