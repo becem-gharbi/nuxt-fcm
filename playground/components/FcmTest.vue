@@ -35,19 +35,13 @@ const { onMessage, getToken } = useFcm()
 
 const registrationToken = await getToken()
 
-onMessage(payload => message.value = payload)
+onMessage(payload => (message.value = payload))
 
 async function sendMessage() {
   send({
-    topic:
-            topic.value,
+    topic: topic.value,
     payload: {
-      notification: {
-        title: 'From client',
-      },
-      data: {
-        ok: 'true',
-      },
+      title: 'From client',
     },
     authorization: 'Bearer 123',
   })
