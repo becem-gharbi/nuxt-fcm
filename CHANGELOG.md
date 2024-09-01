@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.2.12
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.11...v0.2.12)
+
+### 🩹 Fixes
+
+- Upgrade deprecated `sendToTopic` to `send` ([075ccce](https://github.com/becem-gharbi/nuxt-fcm/commit/075ccce))
+
+### 🏡 Chore
+
+- **playground:** Update FcmTest ([7db8d42](https://github.com/becem-gharbi/nuxt-fcm/commit/7db8d42))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+
 ## v0.2.11
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.10...v0.2.11)
