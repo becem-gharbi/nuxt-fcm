@@ -92,18 +92,9 @@ export default defineNuxtModule<ModuleOptions>({
       getContents: () =>
         [
           'declare module \'#fcm\' {',
-          `const app: typeof import('${resolve(
-            runtimeDir,
-            'server/utils',
-          )}').app`,
-          `const setPermissions: typeof import('${resolve(
-            runtimeDir,
-            'server/utils',
-          )}').setPermissions`,
-          `const checkPermission: typeof import('${resolve(
-            runtimeDir,
-            'server/utils',
-          )}').checkPermission`,
+          `const app: typeof import('${resolve(runtimeDir, 'server/utils')}').app`,
+          `const setPermissions: typeof import('${resolve(runtimeDir, 'server/utils')}').setPermissions`,
+          `const checkPermission: typeof import('${resolve(runtimeDir, 'server/utils')}').checkPermission`,
           '}',
         ].join('\n'),
     })
