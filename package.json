@@ -36,22 +36,22 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.13.0",
     "defu": "^6.1.4"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.5.5",
+    "@nuxt/kit": "^3.14.159",
     "@nuxt/module-builder": "^0.8.3",
-    "@nuxt/schema": "^3.13.0",
+    "@nuxt/schema": "^3.14.159",
     "changelogen": "^0.5.5",
     "eslint": "^8",
     "firebase": "^10.13.1",
     "firebase-admin": "^12.4.0",
-    "nuxt": "^3.13.0"
+    "nuxt": "^3.14.159"
   },
   "peerDependencies": {
     "firebase": "^10.13.0",
     "firebase-admin": "^12.4.0"
   },
-  "packageManager": "pnpm@8.7.0+sha1.4a6f863625170af87d027789f72662e0601ecb57"
+  "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
 }
