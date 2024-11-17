@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.2.13
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.12...v0.2.13)
+
+### 🚀 Enhancements
+
+- Support listen to notification click on background ([#20](https://github.com/becem-gharbi/nuxt-fcm/pull/20))
+
+### 💅 Refactors
+
+- No significant change ([95a42fa](https://github.com/becem-gharbi/nuxt-fcm/commit/95a42fa))
+
+### 🏡 Chore
+
+- **playground:** Update default options ([15a6c26](https://github.com/becem-gharbi/nuxt-fcm/commit/15a6c26))
+
+### ❤️ Contributors
+
+- Becem <becem.gharbi@live.com>
+- Becem-gharbi <becem.gharbi@live.com>
+
 ## v0.2.12
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.11...v0.2.12)
