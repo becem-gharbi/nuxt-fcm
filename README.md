@@ -83,6 +83,11 @@ In the background, notifications are automatically shown when a message is recei
       messaging.onBackgroundMessage((payload) => {
         console.log("Received background message ", payload);
       })
+
+      function onNotificationClick(event) {
+        console.log('[firebase-messaging-sw.js] Notification clicked', event)
+        event.notification.close();
+      }
     `,
   },
 ```

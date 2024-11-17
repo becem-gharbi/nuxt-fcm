@@ -11,6 +11,11 @@ export default defineNuxtConfig({
       messaging.onBackgroundMessage((payload) => {
         console.log("[firebase-messaging-sw.js] Received background message ", payload);
       })
+
+      function onNotificationClick(event) {
+        console.log('[firebase-messaging-sw.js] Notification clicked', event)
+        event.notification.close();
+      }
     `,
   },
 
