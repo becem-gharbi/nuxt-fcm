@@ -40,14 +40,14 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.5.5",
-    "@nuxt/kit": "^3.14.159",
+    "@nuxt/kit": "^3.15.4",
     "@nuxt/module-builder": "^0.8.3",
-    "@nuxt/schema": "^3.14.159",
+    "@nuxt/schema": "^3.15.4",
     "changelogen": "^0.5.5",
     "eslint": "^8",
     "firebase": "^10.13.1",
     "firebase-admin": "^12.4.0",
-    "nuxt": "^3.14.159"
+    "nuxt": "^3.15.4"
   },
   "peerDependencies": {
     "firebase": "^10.13.0",
