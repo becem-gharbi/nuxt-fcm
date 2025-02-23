@@ -8,9 +8,9 @@ const app = privateConfig.serviceAccount && initializeApp({
   credential: cert({
     projectId: privateConfig.serviceAccount.project_id,
     clientEmail: privateConfig.serviceAccount.client_email,
-    privateKey: privateConfig.serviceAccount.private_key
+    privateKey: privateConfig.serviceAccount.private_key,
   }),
-  
+
 })
 
 export { app }

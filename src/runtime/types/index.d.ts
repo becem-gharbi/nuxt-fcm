@@ -1,5 +1,4 @@
 import type { Messaging } from 'firebase/messaging'
-import type { ServiceAccount } from 'firebase-admin/app'
 import type { FirebaseOptions } from 'firebase/app'
 
 export type PublicConfig = {
@@ -9,9 +8,9 @@ export type PublicConfig = {
 
 export type PrivateConfig = {
   serviceAccount?: {
-    project_id?: string;
-    client_email?: string;
-    private_key?: string;
+    project_id?: string
+    client_email?: string
+    private_key?: string
   }
   serviceWorkerScript?: string
 }

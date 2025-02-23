@@ -79,7 +79,7 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     nuxt.options.routeRules ||= {}
-    nuxt.options.routeRules["/firebase-messaging-sw.js"] = { prerender: true }
+    nuxt.options.routeRules['/firebase-messaging-sw.js'] = { prerender: true }
 
     nuxt.options.nitro = defu(
       {
