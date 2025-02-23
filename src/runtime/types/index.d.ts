@@ -8,7 +8,11 @@ export type PublicConfig = {
 }
 
 export type PrivateConfig = {
-  serviceAccount?: ServiceAccount
+  serviceAccount?: {
+    project_id?: string;
+    client_email?: string;
+    private_key?: string;
+  }
   serviceWorkerScript?: string
 }
 

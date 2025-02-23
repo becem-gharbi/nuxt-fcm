@@ -1,7 +1,20 @@
 export default defineNuxtConfig({
-  ssr: false,
 
   modules: ['../src/module'],
+  ssr: false,
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  compatibilityDate: '2024-07-22',
+
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        module: 'ESNext',
+      },
+    },
+  },
 
   fcm: {
     firebaseConfig: {},
@@ -17,18 +30,5 @@ export default defineNuxtConfig({
         event.notification.close();
       }
     `,
-  },
-
-  typescript: {
-    tsConfig: {
-      compilerOptions: {
-        module: 'ESNext',
-      },
-    },
-  },
-
-  compatibilityDate: '2024-07-22',
-  future: {
-    compatibilityVersion: 4,
   },
 })

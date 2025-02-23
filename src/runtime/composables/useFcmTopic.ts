@@ -1,6 +1,5 @@
 import type {
   MessagingPayload,
-  MessagingTopicResponse,
   MessagingTopicManagementResponse,
 } from 'firebase-admin/messaging'
 import { useFcm } from './useFcm'
@@ -10,8 +9,8 @@ export default function () {
     topic: string
     payload: MessagingPayload
     authorization?: string
-  }): Promise<MessagingTopicResponse> {
-    return $fetch<MessagingTopicResponse>('/api/fcm/topic/send', {
+  }): Promise<string> {
+    return $fetch<string>('/api/fcm/topic/send', {
       method: 'POST',
       body: {
         topic: args.topic,

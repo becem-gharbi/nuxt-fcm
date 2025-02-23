@@ -15,8 +15,8 @@ export default defineEventHandler((event) => {
       addEventListener("notificationclick", onNotificationClick);
     }
 
-    importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js");
-    importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js");
+    importScripts("https://www.gstatic.com/firebasejs/11.3.1/firebase-app-compat.js");
+    importScripts("https://www.gstatic.com/firebasejs/11.3.1/firebase-messaging-compat.js");
     
     const firebaseConfig = ${firebaseConfigString};
 

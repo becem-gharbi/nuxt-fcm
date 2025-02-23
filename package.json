@@ -39,19 +39,19 @@
     "defu": "^6.1.4"
   },
   "devDependencies": {
-    "@nuxt/eslint-config": "^0.5.5",
+    "@nuxt/eslint-config": "^0.7.4",
     "@nuxt/kit": "^3.15.4",
-    "@nuxt/module-builder": "^0.8.3",
+    "@nuxt/module-builder": "^0.8.4",
     "@nuxt/schema": "^3.15.4",
-    "changelogen": "^0.5.5",
-    "eslint": "^8",
-    "firebase": "^10.13.1",
-    "firebase-admin": "^12.4.0",
+    "changelogen": "^0.5.7",
+    "eslint": "^9.17.0",
+    "firebase": "^11.3.1",
+    "firebase-admin": "^13.1.0",
     "nuxt": "^3.15.4"
   },
   "peerDependencies": {
-    "firebase": "^10.13.0",
-    "firebase-admin": "^12.4.0"
+    "firebase": "^11.3.1",
+    "firebase-admin": "^13.1.0"
   },
-  "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
+  "packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321"
 }
