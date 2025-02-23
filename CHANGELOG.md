@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v0.2.14
+
+[compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.13...v0.2.14)
+
+### 🚀 Enhancements
+
+- Upgrade `firebase` to v11 and `firebase-admin` to v13 ([9a6bf7b](https://github.com/becem-gharbi/nuxt-fcm/commit/9a6bf7b))
+
+### 🔥 Performance
+
+- Generate service worker at build time ([669e6b8](https://github.com/becem-gharbi/nuxt-fcm/commit/669e6b8))
+
+### 🏡 Chore
+
+- **lint:** Fix ([4e30451](https://github.com/becem-gharbi/nuxt-fcm/commit/4e30451))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+
 ## v0.2.13
 
 [compare changes](https://github.com/becem-gharbi/nuxt-fcm/compare/v0.2.12...v0.2.13)
