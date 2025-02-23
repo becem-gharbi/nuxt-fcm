@@ -12,7 +12,7 @@ import { defu } from 'defu'
 import { name, version } from '../package.json'
 import type { PublicConfig, PrivateConfig } from './runtime/types'
 
-export interface ModuleOptions extends PrivateConfig, PublicConfig {}
+export interface ModuleOptions extends PrivateConfig, PublicConfig { }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -77,6 +77,9 @@ export default defineNuxtModule<ModuleOptions>({
       route: '/firebase-messaging-sw.js',
       handler: resolve(runtimeDir, 'server/routes/firebase-messaging-sw.get'),
     })
+
+    nuxt.options.routeRules ||= {}
+    nuxt.options.routeRules["/firebase-messaging-sw.js"] = { prerender: true }
 
     nuxt.options.nitro = defu(
       {
